@@ -1,0 +1,141 @@
+---
+title: "Basic *nix Scripting"
+subtitle: "TODO"
+author: "Drew Schmidt"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  beamer_presentation:
+    highlight: tango
+    theme: "Frankfurt"
+    colortheme: "whale"
+    fonttheme: "structurebold"
+    includes:
+      in_header: header.tex
+---
+
+```{r, echo=FALSE, message=FALSE}
+library(knitr)
+opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
+```
+
+
+# Background
+
+## History
+
+* UNIX: Bell labs, 1970
+* GNU: MIT, 1983
+* Linux: University of Helsinki, 1991
+
+
+## Some Basics
+
+* No drive letters (yay!)
+* No registry (YAY!)
+* \emph{Everything} is a file.
+
+
+## Interacting with the Shell
+
+tab, 
+
+```bash
+if [ ! -a ~/.inputrc ]; then
+  echo "\$include /etc/inputrc" > ~/.inputrc
+fi
+
+echo "set completion-ignore-case On" >> ~/.inputrc
+```
+
+
+
+
+
+# Files
+
+## Managing Files
+
+\begin{center}
+  \begin{tabular}{ll}\hline
+    \textbf{Command} & \textbf{what it does} \\\hline
+    ls & list folder contents \\
+    cd & change directory \\
+    rm & remove file/dir \\
+    cp & copy file/dir \\\hline
+  \end{tabular}
+\end{center}
+
+
+flags, man, ...
+
+
+## Example
+
+\begin{exampleblock}{asdf}
+```bash
+cd /tmp
+mkdir stat583
+cd stat583
+```
+\end{exampleblock}
+
+
+## Paths
+
+\begin{center}
+  \begin{tabular}{ll}\hline
+    \textbf{Command} & \textbf{what it does} \\\hline
+    `pwd` & Print working directory \\
+    `.` & Here \\
+    `..` & One directory up \\
+    `~` & Home \\
+  \end{tabular}
+\end{center}
+
+
+## Example
+
+\begin{exampleblock}{asdf}
+```bash
+pwd
+```
+\end{exampleblock}
+
+
+
+
+## Interacting with Files
+
+\begin{center}
+  \begin{tabular}{ll}\hline
+    \textbf{Command} & \textbf{what it does} \\\hline
+    `head` & see first few lines of file \\
+    `tail` & see last few lines of file \\
+    `cat` & "concatenate" \\
+  \end{tabular}
+\end{center}
+
+
+
+## Redirection and Pipes
+
+\begin{center}
+  \begin{tabular}{ll}\hline
+    \textbf{Symbol} & \textbf{what it does} \\\hline
+    `>` & redirect (overwrite) \\
+    `>>` & redirect (append)
+  \end{tabular}
+\end{center}
+
+
+cat, head, tail, pipes, writing, nano/vim/emacs
+
+## Search and Replace
+
+grep, sed, awk
+
+## Scripting
+
+loops, variables, exit status, functions ...
+
+
