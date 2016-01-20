@@ -6,7 +6,6 @@ date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   beamer_presentation:
     toc: true
-    keep_tex: true
     highlight: tango
     theme: "Frankfurt"
     slide_level: 2
