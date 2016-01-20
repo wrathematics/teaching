@@ -1,0 +1,88 @@
+---
+title: "Setting Up Your Ubuntu Environment"
+author: "Drew Schmidt"
+subtitle: BZAN 583
+output: word_document
+---
+
+# Preliminaries
+
+Before beginning, you will need to:
+
+* Download and install VirtualBox https://www.virtualbox.org/wiki/Downloads
+* Download and install Ubuntu: http://www.ubuntu.com/download/desktop
+
+In class, everyone said they were able to make it at least that far.  If not, see us!  You can always use Newton for the next few lectures (make sure you apply for your account now!), but later in the course you will need to run another VM.  So getting comfortable with this now will pay dividends.
+
+## Terminology
+
+* **Virtual Machine**: emulation of an operating system
+* **Host (or Host OS)**: The OS running "natively" on your computer (e.g., Windows or Mac OS X).
+* **Guest (or Guest OS)**: The VM running inside your host OS (e.g., Ubuntu).
+
+
+
+# Installing Guest Additions
+
+1. Start your newly installed Ubuntu VM and log in.
+2. In the menu bar of your now-running VM, select Devices -> Insert Guest Additions CD Image.
+3. You should be prompted to accept and enter your password.
+    1. If so, do so
+    2. If not, open your file manager (the filing cabinet icon on your menu bar in the Ubuntu VM), and look in the left bar for the Guest Additions "CD".  Click it and then look for the "Run Software" button.
+4. A terminal window should pop up.  Let it run until it instructs you to press enter to continue.  The terminal will be closed.
+5. Reboot the VM:  select the power icon at the top right of the screen, or alternatively, enter the command `sudo shutdown -r now` from a terminal.
+6. Your guest additions should be installed and in use.  You can test this by maximizing the VM window.  If you see lots of unused (by the VM) space (grey borders), then you *do not* have guest additions installed correctly.  If the resolution of the VM changes to fit the size of the window, then you have guest additions installed correctly.
+
+
+
+# Creating a Permanent Shared Folder
+
+Proceed only after you have guest additions working.  Here we create a folder which can share data between the host and guest machines.  We will name them `host` and `guest` respectively to make it clear which is which.  Feel free to substitute your own naming convention.  
+
+We will several times refer to `host_username` and `guest_username`.  These refer to the username of your host OS and username of your Ubuntu VM, respectively.
+
+1. In your host OS, create the `host` folder (as you would create any other folder).  So on Windows, you might have `C:\Users\host_username\Documents\host`.  On a Mac, you might have `/Users/host_username/Documents/host`.
+2. Create a file in your newly created `host` folder.  Call it `asdf` (or whatever). 
+3. In your VM, create a new folder.  In our example, we will use a folder on the desktop, but you can put it anywhere.  
+    1. Right click on the desktop.
+    2. Create new folder. Call it `guest` (or whatever).
+4. In the menu bar of your VM, select Devices -> Shared Folder Settings -> green `+` button
+    1. In the "Folder Path" box, add the path to your newly created `host` folder on  your host OS.
+    2. Set the "Folder Name" to `VBHOST` (or whatever).
+    3. Select "Auto-mount" and "Make Permanent".
+5. We will need to edit the file `/etc/rc.local`.  We will use `nano`, which is somewhat similar to editors you are familiar with.
+    1. Open aterminal
+    2. Type `sudo nano /etc/rc.local`; enter your password.
+    3. Before the `exit 0` line, add 
+    ```bash
+    sudo mount ‐t vboxsf VBHOST ${HOME}/Desktop/guest
+    ```
+    Where `VBHOST` and `guest` are as above (if you named them something different).
+    4. Save by entering `ctrl+o` then `enter`.  
+    5. Exit by entering `ctrl+x`.
+6. Reboot.
+7. Now when you open your folder in the VM, you should see the `asdf` file.
+
+
+
+# Git and GitHub
+
+1. Download and install GitHub Desktop: https://desktop.github.com/
+2. Create a GitHub account: https://github.com/
+    1. Accounts are free.
+    2. There are paid accounts that have advanced features; you don't need this.
+    3. However, you can get the low tier paid account for free as a student (plus a lot of other stuff) by signing up for the Student Developer Pack: https://education.github.com/pack
+
+
+
+# Putty and Winscp
+
+If you're on a Mac (or Linux), you don't need to install these.  You have a terminal and ssh tools already on your OS.  You can open a terminal in Finder, under the utilities section (called `Terminal.app`).  See http://accc.uic.edu/answer/how‐do‐i‐use‐ssh‐and‐sftp‐mac‐os‐x for additional information.
+
+Windows users will need to install some additional software:
+
+1. Putty (ssh): http://www.putty.org/
+2. WINSCP (scp/sftp): https://winscp.net/eng/download.php://winscp.net/eng/download.php
+
+
+
