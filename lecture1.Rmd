@@ -1,0 +1,361 @@
+---
+title: "Introduction to the Shell"
+subtitle: "Spring 2016 BZAN 583"
+author: "Drew Schmidt"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  beamer_presentation:
+    toc: true
+    keep_tex: true
+    highlight: tango
+    theme: "Frankfurt"
+    slide_level: 2
+    includes:
+      in_header: include/header.tex
+---
+
+```{r, echo=FALSE, message=FALSE}
+library(knitr)
+opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
+```
+
+
+# Learning Objectives
+
+## The Next 3 Classes
+1. Shell basics (today)
+2. Shell scripting
+3. wrapup + git
+
+
+## Today's Learning Objectives
+* Gain some historical perspective.
+* Understand why we need this stuff.
+* Become acquainted with basic interactions with the shell.
+* Learn about basic system monitoring.
+* Discuss file manipulation.
+
+
+
+
+
+# Background
+
+## Some Dates
+* UNIX: Bell labs, 1970
+* GNU: MIT, 1983
+* Linux: University of Helsinki, 1991
+
+
+## The GNU Perspective...
+\begin{wrapfigure}{r}{0.4\textwidth}
+  \begin{center}
+    \includegraphics[scale=.3]{pics/rms-bw.jpeg}
+  \end{center}
+\end{wrapfigure}
+\textit{I’d just like to interject for a moment. What you’re refering to as Linux, is in fact, GNU/LInux, or as I’ve recently taken to calling it, GNU plus Linux. Linux is not an operating system unto itself, but rather another free component of a fully functioning GNU system made useful by the GNU corelibs, shell utilities and vital system components comprising a full OS as defined by POSIX.}
+
+
+
+## The Confusion
+* "Linux"
+* Mac OS X
+* FreeBSD, OpenBSD, NetBSD, ... ("the BSD's")
+* Solaris
+
+
+## It's So Old! Why Now?
+* Free (beer/speech)
+* Powerful
+* Multi-user by design.
+* Great for servers and batch computing.
+* Guess what big data needs...
+
+
+## Example Use Cases
+* Servers --- persistence (data consumption)
+    * Grab data from a service periodically (e.g., scraping twitter)
+    * Running a database
+* Batch Computing --- long running jobs (data analysis)
+    * data mining
+    * statistical modeling
+
+
+
+
+# Basics
+
+## Some Basics
+* No drive letters (yay!)
+* No registry (YAY!)
+* \emph{Everything} is a file.
+* Multi-user design.
+
+
+## Getting Help
+### `man`
+* Manual --- built in help
+* Useful for identifying flags
+* Often not well-written...
+```bash
+man ls
+```
+
+### The Internet
+* google/duckduckgo/...
+* stackoverflow
+* Phrases: 
+    * shell
+    * scripting
+    * bash
+    * linux
+
+## Search
+* Many programs (`man`, `less`, `vim`, ...) use `/` to search.
+* Example: start `man ls` and enter: `/disable`
+* Find next match: `n`
+* Find previous match: `N`
+
+
+## Permissions
+* root --- has access to everything
+* regular user does not:
+```{bash, error=TRUE}
+mkdir /bin/nope
+```
+* Also group permissions (beyond scope)
+
+
+
+## Directories
+
+* `~` (`/home/your_user_name`)
+* `/tmp`
+* `pwd`
+
+
+
+## Interacting with the Shell
+* tab complete
+
+
+
+## Setting Things Up
+* (Linux Only!): To make your shell case-insensitive.
+* Macs already do this by default.
+
+```bash
+if [ ! -a ~/.inputrc ]; then
+  echo "\$include /etc/inputrc" > ~/.inputrc
+fi
+
+echo "set completion-ignore-case On" >> ~/.inputrc
+```
+
+* A homework exercise is to describe in words what this does.
+
+
+## Flags
+* Passing arguments to a function/command
+* 
+
+
+
+
+
+# System Monitoring
+
+## Storage Space
+\begin{center}
+  \begin{tabular}{ll}\hline
+    \textbf{Command} & \textbf{what it does} \\\hline
+    du & Disk Usage of folder or current dir \\
+    df & File system report \\
+  \end{tabular}
+\end{center}
+
+
+## Example
+```bash
+du /tmp
+df
+df -h
+```
+
+
+
+## Processes
+\begin{center}
+  \begin{tabular}{ll}\hline
+    \textbf{Command} & \textbf{what it does} \\\hline
+    top & remove file/dir \\
+    kill & copy file/dir \\\hline
+  \end{tabular}
+\end{center}
+
+
+
+
+
+# Working with Files
+## Managing Files
+
+\begin{center}
+  \begin{tabular}{ll}\hline
+    \textbf{Command} & \textbf{what it does} \\\hline
+    ls & list folder contents \\
+    cd & change directory \\
+    rm & remove file/dir \\
+    cp & copy file/dir \\\hline
+  \end{tabular}
+\end{center}
+
+
+## Paths
+\begin{center}
+  \begin{tabular}{ll}\hline
+    \textbf{Command} & \textbf{what it does} \\\hline
+    `pwd` & Print working directory \\
+    `.` & Here \\
+    `..` & One directory up \\
+    `~` & Home \\
+  \end{tabular}
+\end{center}
+
+
+## Example
+```{bash}
+cd ~
+mkdir examples
+cd ~/examples
+pwd
+```
+
+
+## Hidden Files
+* Files beginning with `.` are hidden
+* See them with `ls -a`
+
+
+## Example
+```{bash}
+ls
+touch .example
+ls
+ls -l
+rm .example
+```
+
+
+
+
+
+## Interacting with Files
+\begin{center}
+  \begin{tabular}{ll}\hline
+    \textbf{Command} & \textbf{what it does} \\\hline
+    `head` & see first few lines of file \\
+    `tail` & see last few lines of file \\
+    `cat` & "concatenate" \\
+  \end{tabular}
+\end{center}
+
+
+
+## Permissions
+* Some users have root-like access via `su` and/or `sudo`
+    * In Ubuntu, `sudo su` changes to root
+    * **BE CAREFUL WHEN RUNNING COMMANDS AS ROOT** (even with `sudo`!)
+
+
+## Installing Software
+* If you have access to root/`sudo`: *very* easy!
+* If you don't, often must build from source (can be hard!)
+
+
+## Example (Ubuntu)
+```bash
+tree # not installed!
+sudo apt-get update
+# enter your password when prompted...
+sudo apt-get install tree
+tree
+```
+
+
+
+
+
+
+# Pipes and Redirection
+## Pipes
+* `|` (`shift`+`\` on American keyboards)
+* Chains together multiple commands
+* Works like function composition:
+    * `foo(bar(x))`
+    * `bar x | foo`
+
+
+## Example
+```bash
+ls -l | tail
+ls -l | tail -n 2
+```
+
+
+## Redirection
+\begin{center}
+  \begin{tabular}{ll}\hline
+    \textbf{Symbol} & \textbf{what it does} \\\hline
+    $>$ & redirect (overwrite) \\
+    $>>$ & redirect (append)
+  \end{tabular}
+\end{center}
+
+
+
+
+positional cd
+
+
+
+
+# Searching
+
+## Your New Best Friend: grep
+* `grep`: Global Regular Expression Printer
+* Tool for searching text files with complex patterns.
+* ***EXTREMELY USEFUL***
+* More advanced features next time
+
+
+## My 5 Most Used Commands (descending order)
+* cd
+* ls
+* git
+* vim
+* grep
+
+
+
+
+
+
+
+# Misc
+
+
+
+
+
+## Misc Useful Stuff
+* Download files: `curl` and `wget`
+* Browse the web like it's 1990: `lynx`
+* Connect to a remote machine: `ssh`
+* Move files to/from remote machines: `scp` and `sftp`
+
+
+
+
+
+

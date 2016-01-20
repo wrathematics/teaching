@@ -1,0 +1,65 @@
+---
+title: "Basic *nix Scripting"
+subtitle: "TODO"
+author: "Drew Schmidt"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  beamer_presentation:
+    toc: true
+    keep_tex: true
+    highlight: tango
+    theme: "Frankfurt"
+    slide_level: 2
+    includes:
+      in_header: include/header.tex
+---
+
+```{r, echo=FALSE, message=FALSE}
+library(knitr)
+opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
+```
+
+
+# Learning Objectives
+
+## The Next 3 Classes
+1. Shell basics (today)
+2. Shell scripting
+3. wrapup + git
+
+## Today's Learning Objectives
+* Gain some historical perspective.
+* Understand why we need this stuff.
+* Become acquainted with basic interactions with the shell.
+* Learn about basic system monitoring.
+* Discuss file manipulation.
+
+
+
+
+
+
+
+
+cat, head, tail, pipes, writing, nano/vim/emacs
+
+## Search and Replace
+
+grep, sed, awk
+
+## Scripting
+
+loops, variables, exit status, functions ...
+
+C-c 
+
+```bash
+while true; do
+  echo "hi"
+done
+```
+
+
+
+
+
