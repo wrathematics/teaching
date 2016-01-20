@@ -91,8 +91,7 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 * Multi-user design.
 
 
-## Getting Help
-### `man`
+## Getting Help --- `man`
 * Manual --- built in help
 * Useful for identifying flags
 * Often not well-written...
@@ -100,7 +99,7 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 man ls
 ```
 
-### The Internet
+## Getting Help --- The Internet
 * google/duckduckgo/...
 * stackoverflow
 * Phrases: 
@@ -109,7 +108,8 @@ man ls
     * bash
     * linux
 
-## Search
+
+## Searching
 * Many programs (`man`, `less`, `vim`, ...) use `/` to search.
 * Example: start `man ls` and enter: `/disable`
 * Find next match: `n`
@@ -119,8 +119,9 @@ man ls
 ## Permissions
 * root --- has access to everything
 * regular user does not:
-```{bash, error=TRUE}
+```bash
 mkdir /bin/nope
+## mkdir: cannot create directory ‘/bin/nope’: Permission denied
 ```
 * Also group permissions (beyond scope)
 
@@ -128,18 +129,29 @@ mkdir /bin/nope
 
 ## Directories
 
-* `~` (`/home/your_user_name`)
-* `/tmp`
+* Separated by a `/`
+* Relative: `dir1/dir2`
+* Absolute: `/home/user/dir1/dir2`
 * `pwd`
+* `~` (`/home/your_user_name`)
 
+
+# Dir Dots
+* `.` --- current working directory
+* `..` --- parent working directory
+* `...` --- not valid; means nothing
+* `../..` --- parent of parent directory
+* `../../..` --- parent of parent of parent directory
+* etc.
 
 
 ## Interacting with the Shell
-* tab complete
+* Tab auto-fills and/or shows options
+* Tab once: complete if possible, otherwise do nothing
+* Tab twice: show possibilities
 
 
-
-## Setting Things Up
+## Making Things Case Insensitvie
 * (Linux Only!): To make your shell case-insensitive.
 * Macs already do this by default.
 
@@ -151,12 +163,25 @@ fi
 echo "set completion-ignore-case On" >> ~/.inputrc
 ```
 
-* A homework exercise is to describe in words what this does.
+* A later homework exercise is to describe in words what this does.
 
 
-## Flags
+## Flags and Options
 * Passing arguments to a function/command
-* 
+  * Flags: `-` 
+  * Options: `--`
+* Similar behavior, different interpretation.
+* Often a command has a flag and an argument to do the same thing!
+* Rough translation:
+    * R: `foo(option=3, f=TRUE)`
+    * Shell: `foo -f --option 3`
+
+
+## Why the Multiple Syntax?
+* Flags are always a single character.
+* Multiple charcaters interpreted as multiple flags!
+* `ls -la` same as `ls -al` same as `ls -l -a` 
+
 
 
 
@@ -312,9 +337,6 @@ ls -l | tail -n 2
 \end{center}
 
 
-
-
-positional cd
 
 
 
