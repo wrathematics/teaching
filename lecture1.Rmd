@@ -318,6 +318,9 @@ tree
 * Works like function composition:
     * `foo(bar(x))`
     * `bar x | foo`
+* Flags/options rules still apply:
+    * `foo(bar(x, f=TRUE), option=3)`
+    * `bar x -f | foo --option 3`
 
 
 ## Example
