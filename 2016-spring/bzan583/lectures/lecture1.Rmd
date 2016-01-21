@@ -10,7 +10,7 @@ output:
     theme: "Frankfurt"
     slide_level: 2
     includes:
-      in_header: include/header.tex
+      in_header: include/slides_header.tex
 ---
 
 ```{r, echo=FALSE, message=FALSE}
@@ -248,7 +248,7 @@ df -h
 
 
 ## Example
-```{bash}
+```bash
 cd ~
 mkdir examples
 cd ~/examples
@@ -262,7 +262,7 @@ pwd
 
 
 ## Example
-```{bash}
+```bash
 ls
 touch .example
 ls
