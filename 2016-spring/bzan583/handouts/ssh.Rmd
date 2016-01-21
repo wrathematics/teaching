@@ -7,6 +7,10 @@ output: pdf_document
 
 # Preliminaries
 
+This document will show you how to connect to the Newton HPC cluster.  If you have trouble with your Ubuntu VM, you can use Newton to run example commands and solve the homework exercises.  However, you will not have access to root, so you will not be able to run any command prefaced by `sudo`.
+
+We will return to this (ssh, but not necessarily Newton) when we get to cloud computing.
+
 ## Software
 
 If you're on a Mac (or Linux), you don't need to install these.  You have a terminal and ssh tools already on your OS.  You can open a terminal in Finder, under the utilities section (called `Terminal.app`).
