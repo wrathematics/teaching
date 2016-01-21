@@ -13,36 +13,87 @@ If you're on a Mac (or Linux), you don't need to install these.  You have a term
 
 Windows users will need to install some additional software:
 
-1. Putty (ssh): http://www.putty.org/
+1. PuTTY (ssh): http://www.putty.org/
 2. WINSCP (scp/sftp): https://winscp.net/eng/download.php://winscp.net/eng/download.php
 
 
 
-## Terminology
-
-* **ssh**: "secure shell".  A way of securely (i.e., with encryption) connecting to a remote machine and executing commands on it.  The term is used interchangeably with the protocol and also the software.
-* **
 
 
 # Connecting to Newton
 
+## Windows
+
+Open PuTTY. In the configuration window, under "Session", enter:
+
+* **Host Name (or IP address):** `my_netid@login.newton.utk.edu` (replace `my_netid` with your UTK netid)
+* **Port:** 22
+* **Connection type:** SSH
+
+At this point, you are encouraged to give a name for this session (for example, `newton`) in the "Saved Sessions" field, then click the "Save" button.  Then you only have to double click on `newton` (or whatever you named it) under your saved sessions to connect to Newton.
+
+Once you connect, you will be asked to enter your password.  Enter your UTK netid password and press enter.  You should now be connected to Newton.
+
+## Mac and Linux
+
+Open a terminal, and enter:
+
+```
+ssh my_netid@login.newton.utk.edu
+```
+
+Where `my_netid` is your UTK netid.  You will then be asked for a password; enter your UTK netid password.  You should now be logged in.
+
+
+
+
 
 # Transferring Files
 
+## Windows
+
+Open winscp. Log in with:
+
+* **Host name:** login.newton.utk.edu
+* **Port number:** 22
+* **User name:** Your UTK netid
+
+You can probably take it from here.
+
+## Mac and Linux
+
+We will cover the use of sftp; you can also use scp if you prefer.  Using sftp:
+
+```
+sftp my_netid@login.newton.utk.edu
+```
+
+Now use the command `put` to upload (from your laptop, to Newton), `get` to download (the reverse).  A subset of shell commands will work in sftp, such as `ls`, `mkdir`, and `rm`.  See `man sftp` for more details.
 
 
-# Keys
+
+
+# Private Keys
+
+On many systems, you can avoid having to enter a password by use of "ssh keys".  To generate ssh keys, follow the guide below based on your OS:
+
+* [Windows users](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-putty-on-digitalocean-droplets-windows-users)
+* [Mac and Linux users](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets)
+
+Then add the contents of your generated `id_rsa.pub` file to `~/.ssh/authorized_keys` on Newton.
+
+
 
 
 
 # Notes for Mac and Linux Users
 
-There is a way to configure ssh to be much simpler to use, so you do not have to remember numerous cumbersome host names (like `newlogin.newton.utk.edu`), usernames, etc.  You can store the relevant information in the `~/.ssh/config` file (which you will create if it does not already exist).
+There is a way to configure ssh to be much simpler to use, so you do not have to remember numerous cumbersome host names (like `login.newton.utk.edu`), usernames, etc.  You can store the relevant information in the `~/.ssh/config` file (which you will create if it does not already exist).  Here's a sample configuration:
 
 ```
 Host newton
 Port 22
-HostName newlogin.newton.utk.edu
+HostName login.newton.utk.edu
 User your_user_name
 TCPKeepAlive yes
 ForwardX11 no
@@ -55,7 +106,10 @@ Now, instead of having to remember all of this information, you can simply type:
 ssh newton
 ```
 
-or whatever name you provided in the `Host` field.
+or whatever name you provided in the `Host` field if you want to ssh to Newton.  If you want to sftp:
 
-Strictly speaking, not all of this information is needed (such as the `Port` field if the listening port is 22).  Additionally, there are numerous other options.  See `man ssh` for more information.
+```
+sftp newton
+```
 
+As you gain accounts to other systems, you can simply add more such configurations to `~/.ssh/config`.
