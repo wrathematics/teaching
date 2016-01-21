@@ -23,8 +23,9 @@ make_handouts <- function(files)
   newoutput <- "output:
   pdf_document:
     toc: true
-    toc_depth: 2
-"
+    toc_depth: 1
+    includes:
+      in_header: include/header.tex"
   
   for (file in files)
   {
@@ -37,7 +38,7 @@ make_handouts <- function(files)
     newfile <- sub(x=file, pattern="[.]", replacement="_handout.")
     writeLines(txt, newfile)
     
-    rmarkdown::render(file)
+    rmarkdown::render(newfile)
     
     file.remove(newfile)
   }
