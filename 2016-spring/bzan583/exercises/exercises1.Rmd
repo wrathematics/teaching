@@ -1,0 +1,81 @@
+---
+title: 'Exercises: Introduction to the Shell'
+author: "Drew Schmidt"
+output: html_document
+---
+
+*Due*: Feb 1, 2016 by the beginning of class.
+
+Each problem is worth 10 points.
+
+You can use whatever shell/OS you like, but I will assume you have access to GNU flags/userland, and your work will be graded accordingly.  If you don't know what this means, use the Ubuntu VM or Newton machine and you're good to go.
+
+
+1. An extremely important command for shell scripting (next lecture) is `echo`, which prints text.  Using `echo`, produce valid syntax for a "hello world"; i.e., print the words "hello world" to the terminal using the `echo` command.
+
+
+2. Explain briefly in words what the command `ls` does if you enter it into the terminal?  What about `# ls` (include the leading `#` symbol)?  Briefly, explain the difference.
+
+
+
+
+3. 
+
+
+
+
+4. What does the following command do?
+
+```bash
+ls -ahl
+```
+
+5. For each of the following, determine if there is a difference between the pairs of commands.  If there is a difference, briefly explain why:
+    a. `ls -ahl` and `ls -lah`
+    b. `ls -ahl` and `ls -a -h -l`
+    c. `ls -si` and `ls --si`
+
+6. Which of the following is a valid command (i.e., will not produce an error when executed):
+    ```bash
+    # 1
+    ls -O
+    
+    # 2
+    ls -l
+    
+    # 3
+    ls -hlG
+    
+    # 4
+    ls -Kz
+    ```
+
+7. In words, what does the following command do?
+
+```bash
+ls -l | head
+```
+
+8. Suppose you run the `top` command and find the following:
+
+```bash
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+14562 mschmid3  20   0  339924 115588   8112 R 100.1  1.4   0:17.59 R    
+```
+
+Give valid syntax to terminate this process.
+
+9. Produce valid syntax for a command that takes the list of the first 5 files in your home directory in long listing format and writes this to a new file (overwriting if necessary) called `first5.txt`.  (Hint: `ls`, `head`, redirection+pipes.  `man` is your friend).
+
+
+
+10. Using only the `rm` command, give valid syntax to:
+    a. Remove all non-folder files.
+    b. Remove all folders.
+    c. Remove all files and folders.
+
+
+
+
+
+
