@@ -1,6 +1,6 @@
 ---
-title: "Basic *nix Scripting"
-subtitle: "TODO"
+title: "Introduction to Shell Scripting"
+subtitle: "Spring 2016 BZAN 583"
 author: "Drew Schmidt"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
@@ -20,46 +20,214 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 ```
 
 
-# Learning Objectives
-
-## The Next 3 Classes
-1. Shell basics (today)
-2. Shell scripting
-3. wrapup + git
 
 ## Today's Learning Objectives
-* Gain some historical perspective.
-* Understand why we need this stuff.
-* Become acquainted with basic interactions with the shell.
-* Learn about basic system monitoring.
-* Discuss file manipulation.
+* 
 
 
 
 
 
+# Regular Expressions
+
+## sed and grep
+* `grep`: Global Regular Expression Printer
+* `sed`: Stream EDitor
+* Also `awk`; beyond scope of this course.
+
+## Regular Expressions
+* 
 
 
 
-cat, head, tail, pipes, writing, nano/vim/emacs
 
-## Search and Replace
+# Scripting
 
-grep, sed, awk
+## Shell Facts
+* Programming language
+* Only one data type (character!)
+* **Many** implementations.
+* Lumped in with userland stuff like `[`
 
-## Scripting
 
-loops, variables, exit status, functions ...
+## Scripting Basics
+* Sometimes given file extension `.sh` (many don't bother)
+* Should have executable permissions --- `chmod +x file`
+* Execute with `./` --- `./file`
 
-C-c 
 
+## Example: Hello World
 ```bash
-while true; do
-  echo "hi"
+echo "echo hello world" > hw.sh
+chmod +x hw.sh
+./hw.sh
+```
+
+## 
+* First line usually a "shebang"
+    * `#!/bin/sh`
+    * `#!/bin/bash`
+
+
+##
+* Interactive $\iff$ script
+* 
+
+
+## Exit status
+* `exit 0`: good
+* Any other number: bad...
+* Check exit status: `echo $?`
+
+
+
+# Variables and Loops
+
+## Variables
+* Character only!
+* Arithmetic is possible, but fiddly
+* Canonical use: storing paths
+* Undefined variables are "blanks"
+
+
+## Variable Syntax
+* Set value of `x` to string `foo` --- `x=foo`
+* Set value of `x` to result of command `bar` --- ``x=`bar` ``
+* Access value of `x` --- `$x`
+* Encase in brackets for safety: `${x}`
+
+
+## Example
+```bash
+x=pwd
+echo $x
+
+x=`pwd`
+echo $x
+
+echo x
+```
+
+
+## Loop Syntax
+```bash
+for var in $VAR; do
+		...
+done
+```
+
+## Inlining a Command
+```bash
+for var in `command`; do
+		...
 done
 ```
 
 
+## Example
+```bash
+for i in 1 2 3 4 5 6 7 8 9 10; do
+		echo $i
+done
+```
 
 
+## Example
+```bash
+numbers="1 2 3 4 5 6 7 8 9 10"
+for i in $numbers; do
+    echo $i
+done
+```
+
+
+## Example
+```bash
+for i in `seq 1 10`; do
+    echo $i
+done
+```
+
+
+## Loops Wrapup
+* `while` also possible, but less useful
+* BASH has other `for` loop forms (e.g., `for ((i=1;i<=10;i++))`)
+* Don't forget!
+    * No `$` on name declaration.
+    * Need `$` inside loop body!
+
+
+
+
+
+# Logic
+
+## If Syntax
+```bash
+if [ EXPRESSION ]; then
+    ...
+elif [ EXPRESSION ]
+    ...
+else
+    ...
+fi
+```
+
+
+
+## Operators
+* Negation: `!`
+* And: `EXPRESSION1 -a EXPRESSION2`
+* Or: `EXPRESSION1 -o EXPRESSION2`
+
+## Strings
+* String has non-zero length: `-n STRING`
+    * `-n s` is `true`
+    * `-n ""` is `false`
+* Equality: `STRING1 = STRING2`
+    * `a = a` is `true`
+    * `a = b` is `false`
+* Inequality: `STRING1 != STRING2`
+
+
+## PAY ATTENTION RIGHT THIS SECOND
+![](../pics/nuclear_meltdown.jpg)
+
+
+## The Worst Bug in the World
+* `=` breaks if one string has zero length
+* This happens literally all the time
+* It is very difficult to debug
+* I'M WARNING YOU NOW
+
+
+## Example: WATCH OUT
+```bash
+[ $this_doesnt_exist = foo ]
+echo $?
+## 1
+
+if [ $this_doesnt_exist = foo ];then
+		echo "hi"
+fi
+## bash: [: =: unary operator expected
+```
+
+
+## Solutions
+* Always test if a variable is length 0 (`-n`).
+* Modify your test:
+    ```bash
+    if [ X$this_doesnt_exist = Xfoo ];then
+    ```
+
+
+## Example
+```bash
+if [ ! -e foo ]; then
+    touch foo
+else
+    rm foo
+fi
+```
 

@@ -19,13 +19,15 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 ```
 
 
-# Learning Objectives
+
 
 ## The Next 3 Classes
 1. Shell basics (today)
 2. Shell scripting
 3. wrapup + git
 
+
+# Introduction
 
 ## Today's Learning Objectives
 * Gain some historical perspective.
@@ -35,10 +37,18 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 * Discuss file manipulation.
 
 
+## On Learning
+\begin{center}
+  \begin{minipage}[c]{.35\textwidth}
+      \textit{In mathematics, you don't understand things. You just get used to them.}
+  \end{minipage}
+  \begin{minipage}[c]{0.6\textwidth}
+    \begin{center}
+      \includegraphics[scale=.3]{../pics/jvn.jpeg}
+    \end{center}
+  \end{minipage}
+\end{center}
 
-
-
-# Background
 
 ## Some Dates
 * UNIX: Bell labs, 1970
@@ -78,6 +88,8 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 * Batch Computing --- long running jobs (data analysis)
     * data mining
     * statistical modeling
+
+
 
 
 
@@ -136,10 +148,10 @@ mkdir /bin/nope
 * `~` (`/home/your_user_name`)
 
 
-# Dir Dots
+## Dir Dots
 * `.` --- current working directory
 * `..` --- parent working directory
-* `...` --- not valid; means nothing
+* `...` --- **not valid*! Means nothing
 * `../..` --- parent of parent directory
 * `../../..` --- parent of parent of parent directory
 * etc.
@@ -289,7 +301,7 @@ rm .example
 ## Permissions
 * Some users have root-like access via `su` and/or `sudo`
     * In Ubuntu, `sudo su` changes to root
-    * **BE CAREFUL WHEN RUNNING COMMANDS AS ROOT** (even with `sudo`!)
+    * **BE CAREFUL WHEN RUNNING COMMANDS AS ROOT**
 
 
 ## Installing Software

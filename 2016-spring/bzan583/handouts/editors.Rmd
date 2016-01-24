@@ -43,7 +43,7 @@ nano test.txt
 
 You will now be using the nano editor.  At the bottom, you will see a list of commands:
 
-![](nano.png)
+![](../pics/nano.png)
 
 Here, the `^` character means `ctrl`.  So to exit, we could enter `ctrl`+`x`.
 
