@@ -20,12 +20,19 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 
 
 
+##
+### Office Hours
+* SMC 527 D
+* Open: MW 9:00-10:00am.
+* Others by appointment as schedules permit.
+
 
 ##
 ### The Next 3 Classes
 1. Shell basics (today)
 2. Shell scripting
 3. wrapup + git
+
 
 
 # Introduction
@@ -138,10 +145,18 @@ time sort -u big.txt | wc -l
 ### Getting Help --- `man`
 * Manual --- built in help
 * Useful for identifying flags
-* Often not well-written...
+* Most useful as a reference (not a teaching tool)
+* `q` to exit.
+
+
+##
+### Example
 ```bash
 man ls
+man 
+man man
 ```
+
 
 ##
 ### Getting Help --- The Internet
