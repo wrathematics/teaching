@@ -1,6 +1,5 @@
 ---
-title: 'Exercises: Introduction to the Shell'
-author: "Drew Schmidt"
+title: 'Homework 1: Introduction to the Shell'
 output: pdf_document
 ---
 
@@ -14,7 +13,7 @@ You can use whatever shell/OS you like, but I will assume you have access to GNU
 
 
 
-2. (10 pts) For each of the following, determine if there is a difference between the pairs of commands.  If there is a difference, briefly explain why:
+2. (10 pts) For each of the following, determine if there is a difference between the pairs of commands.  If there is a difference, briefly explain why (if there is none, simply say so).
     a. `ls -ahl` and `ls -lah`
     b. `ls -ahl` and `ls -a -h -l`
     c. `ls -si` and `ls --si`
@@ -24,7 +23,7 @@ You can use whatever shell/OS you like, but I will assume you have access to GNU
 3. (10 pts) In words, what does the following command do?
 
 ```bash
-ls -l | head
+grep -iR "foo" *
 ```
 
 
@@ -32,13 +31,10 @@ ls -l | head
 
 
 
-5. (10 pts) Using only the `rm` command, give valid syntax to:
-    a. Remove all non-folder files.
-    b. Remove all folders.
-    c. Remove all files and folders.
+5. (10 pts) Using the `wc` command, give valid syntax to count the number of:
 
+    a. characters
+    b. words
+    c. lines
 
-
-
-
-
+of the file `/etc/passwd`
