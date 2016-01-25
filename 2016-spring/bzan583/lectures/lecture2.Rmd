@@ -25,12 +25,13 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 * SMC 527 D
 * Open: MW 9:00-10:00am.
 * Others by appointment as schedules permit.
+* Additional help: Research Support (call the helpdesk, 974-9900)
 
 
 ##
 ### The Next 3 Classes
 1. Shell basics (today)
-2. Shell scripting
+2. Shell scripting + Application
 3. wrapup + git
 
 
@@ -373,7 +374,7 @@ pwd
 ls
 touch .example
 ls
-ls -l
+ls -a
 rm .example
 ```
 
