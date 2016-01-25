@@ -5,7 +5,7 @@ output: pdf_document
 
 *Due*: Feb 1, 2016 by the beginning of class.
 
-You can use whatever shell/OS you like, but I will assume you have access to GNU flags/userland, and your work will be graded accordingly.  If you don't know what this means, use the Ubuntu VM or Newton machine and you're good to go.
+You can use whatever shell/OS you like, but I will assume you have access to a modern GNU userland/flags, and your work will be graded accordingly.  As such, you are strongly encouraged to use your Ubuntu VM or Newton.
 
 
 
@@ -20,7 +20,7 @@ You can use whatever shell/OS you like, but I will assume you have access to GNU
 
 
 
-3. (10 pts) In words, what does the following command do?
+3. (10 pts) Briefly, in words, what does the following command do?
 
 ```bash
 grep -iR "foo" *
@@ -31,10 +31,4 @@ grep -iR "foo" *
 
 
 
-5. (10 pts) Using the `wc` command, give valid syntax to count the number of:
-
-    a. characters
-    b. words
-    c. lines
-
-of the file `/etc/passwd`
+5. (10 pts) Using the `date` command, give valid syntax to display the alphabetic time zone abbreviation (currently "EST").
