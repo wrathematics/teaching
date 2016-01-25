@@ -91,6 +91,25 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 
 
 
+## Why Even Bother? I know R/Python/...
+
+![](../pics/challenge.png)
+
+## The Right Tool for the Job
+
+```bash
+du -h big.txt
+## 41M	big.txt
+
+time sort -u big.txt | wc -l
+## 1048576
+
+## real	0m2.472s
+## user	0m6.068s
+## sys	0m0.128s
+```
+
+
 
 
 
@@ -112,7 +131,7 @@ man ls
 ```
 
 ## Getting Help --- The Internet
-* google/duckduckgo/...
+* search engine
 * stackoverflow
 * Phrases: 
     * shell
@@ -131,30 +150,25 @@ man ls
 ## Permissions
 * root --- has access to everything
 * regular user does not:
-```bash
-mkdir /bin/nope
-## mkdir: cannot create directory ‘/bin/nope’: Permission denied
-```
 * Also group permissions (beyond scope)
+* Some users have root-like access via `su` and/or `sudo`
+    * In Ubuntu, `sudo su` changes to root
+    * **BE CAREFUL WHEN RUNNING COMMANDS AS ROOT**
 
 
-
-## Directories
-
-* Separated by a `/`
-* Relative: `dir1/dir2`
-* Absolute: `/home/user/dir1/dir2`
-* `pwd`
-* `~` (`/home/your_user_name`)
+## Installing Software
+* If you have access to root/`sudo`: *very* easy!
+* If you don't, often must build from source (can be hard!)
 
 
-## Dir Dots
-* `.` --- current working directory
-* `..` --- parent working directory
-* `...` --- **not valid*! Means nothing
-* `../..` --- parent of parent directory
-* `../../..` --- parent of parent of parent directory
-* etc.
+## Example (Ubuntu)
+```bash
+tree # not installed!
+sudo apt-get update
+# enter your password when prompted...
+sudo apt-get install tree
+tree
+```
 
 
 ## Interacting with the Shell
@@ -175,7 +189,6 @@ fi
 echo "set completion-ignore-case On" >> ~/.inputrc
 ```
 
-* A later homework exercise is to describe in words what this does.
 
 
 ## Flags and Options
@@ -224,11 +237,19 @@ df -h
 \begin{center}
   \begin{tabular}{ll}\hline
     \textbf{Command} & \textbf{what it does} \\\hline
-    top & remove file/dir \\
-    kill & copy file/dir \\\hline
+    top & Show top running processes \\
+    ps & process information \\
+    kill & Terminate a process \\\hline
   \end{tabular}
 \end{center}
 
+
+## Example
+```bash
+top
+ps 12345
+kill 12345
+```
 
 
 
@@ -242,12 +263,29 @@ df -h
     ls & list folder contents \\
     cd & change directory \\
     rm & remove file/dir \\
+    touch & create empty file \\
     cp & copy file/dir \\\hline
   \end{tabular}
 \end{center}
 
 
+## Example
+```bash
+ls
+mkdir mydir
+touch myfile
+ls
+rm myfile
+rm mydir
+rm -r mydir
+```
+
+
 ## Paths
+* Separated by `/`
+* Relative: `dir1/dir2`
+* Absolute: `/home/user/dir1/dir2`
+
 \begin{center}
   \begin{tabular}{ll}\hline
     \textbf{Command} & \textbf{what it does} \\\hline
@@ -257,6 +295,15 @@ df -h
     `~` & Home \\
   \end{tabular}
 \end{center}
+
+
+## Dir Dots
+* `.` --- current working directory
+* `..` --- parent working directory
+* `...` --- **not valid**! Means nothing
+* `../..` --- parent of parent directory
+* `../../..` --- parent of parent of parent directory
+* etc.
 
 
 ## Example
@@ -269,7 +316,7 @@ pwd
 
 
 ## Hidden Files
-* Files beginning with `.` are hidden
+* Files beginning with `.` are "hidden"
 * See them with `ls -a`
 
 
@@ -283,9 +330,6 @@ rm .example
 ```
 
 
-
-
-
 ## Interacting with Files
 \begin{center}
   \begin{tabular}{ll}\hline
@@ -297,28 +341,12 @@ rm .example
 \end{center}
 
 
-
-## Permissions
-* Some users have root-like access via `su` and/or `sudo`
-    * In Ubuntu, `sudo su` changes to root
-    * **BE CAREFUL WHEN RUNNING COMMANDS AS ROOT**
-
-
-## Installing Software
-* If you have access to root/`sudo`: *very* easy!
-* If you don't, often must build from source (can be hard!)
-
-
-## Example (Ubuntu)
+## Example
 ```bash
-tree # not installed!
-sudo apt-get update
-# enter your password when prompted...
-sudo apt-get install tree
-tree
+head /etc/passwd
+tail /etc/passwd
+cat /etc/passwd
 ```
-
-
 
 
 
@@ -328,8 +356,8 @@ tree
 * `|` (`shift`+`\` on American keyboards)
 * Chains together multiple commands
 * Works like function composition:
-    * `foo(bar(x))`
-    * `bar x | foo`
+    * R: `foo(bar(x))`
+    * Shell: `bar x | foo`
 * Flags/options rules still apply:
     * `foo(bar(x, f=TRUE), option=3)`
     * `bar x -f | foo --option 3`
@@ -352,13 +380,19 @@ ls -l | tail -n 2
 \end{center}
 
 
+## Example
+```bash
+echo "some text" > myfile
+echo "some text" >> myfile
+```
 
 
 
 
-# Searching
 
-## Your New Best Friend: grep
+# awk/sed/grep
+
+## Meet grep, Your New Best Friend
 * `grep`: Global Regular Expression Printer
 * Tool for searching text files with complex patterns.
 * ***EXTREMELY USEFUL***
@@ -373,15 +407,20 @@ ls -l | tail -n 2
 * grep
 
 
+## Searching? Really?
+* Uses regular expressions
+* Very fast
+* Doesn't load files into memory!
 
 
 
 
 
-# Misc
+# Closing
 
-
-
+## Putting It All Together
+* How do we use this stuff!?
+* Next time!
 
 
 ## Misc Useful Stuff
@@ -389,9 +428,8 @@ ls -l | tail -n 2
 * Browse the web like it's 1990: `lynx`
 * Connect to a remote machine: `ssh`
 * Move files to/from remote machines: `scp` and `sftp`
+* Others: https://en.wikipedia.org/wiki/List_of_Unix_utilities
 
 
-
-
-
+## Homework
 
