@@ -33,10 +33,10 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 ##
 ### Today's Learning Objectives
 * Gain some historical perspective.
-* Understand why we need this stuff.
 * Become acquainted with basic interactions with the shell.
-* Learn about basic system monitoring.
+* Learn basic system monitoring.
 * Discuss file manipulation.
+* Introduce the standard pattern tools (`awk`/`sed`/`grep`)
 
 
 ##
@@ -131,6 +131,7 @@ time sort -u big.txt | wc -l
 * No registry (YAY!)
 * \emph{Everything} is a file.
 * Multi-user design.
+* `#` is a comment; text that follows is ignored$^{*}$
 
 
 ##
