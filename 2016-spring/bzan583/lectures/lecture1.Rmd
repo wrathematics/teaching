@@ -21,7 +21,8 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 
 
 
-## The Next 3 Classes
+##
+### The Next 3 Classes
 1. Shell basics (today)
 2. Shell scripting
 3. wrapup + git
@@ -29,7 +30,8 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 
 # Introduction
 
-## Today's Learning Objectives
+##
+### Today's Learning Objectives
 * Gain some historical perspective.
 * Understand why we need this stuff.
 * Become acquainted with basic interactions with the shell.
@@ -37,7 +39,8 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 * Discuss file manipulation.
 
 
-## On Learning
+##
+### On Learning
 \begin{center}
   \begin{minipage}[c]{.75\textwidth}
       \textit{In mathematics, you don't understand things. You just get used to them.}
@@ -50,13 +53,15 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 \end{center}
 
 
-## Some Dates
+##
+### Some Dates
 * UNIX: Bell labs, 1970
 * GNU: MIT, 1983
 * Linux: University of Helsinki, 1991
 
 
-## The GNU Perspective...
+##
+### The GNU Perspective...
 \begin{wrapfigure}{r}{0.4\textwidth}
   \begin{center}
     \includegraphics[width=.3\textwidth]{../pics/rms-bw.jpeg}
@@ -66,14 +71,16 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 
 
 
-## The Confusion
+##
+### The Confusion
 * "Linux"
 * Mac OS X
 * FreeBSD, OpenBSD, NetBSD, ... ("the BSD's")
 * Solaris
 
 
-## It's So Old! Why Now?
+##
+### It's So Old! Why Now?
 * Free (beer/speech)
 * Powerful
 * Multi-user by design.
@@ -81,7 +88,8 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 * Guess what big data needs...
 
 
-## Example Use Cases
+##
+### Example Use Cases
 * Servers --- persistence (data consumption)
     * Grab data from a service periodically (e.g., scraping twitter)
     * Running a database
@@ -91,11 +99,13 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 
 
 
-## Why Even Bother? I know R/Python/...
+##
+### Why Even Bother? I know R/Python/...
 
 ![](../pics/challenge.png)
 
-## The Right Tool for the Job
+##
+### The Right Tool for the Job
 
 ```bash
 du -h big.txt
@@ -103,7 +113,7 @@ du -h big.txt
 
 time sort -u big.txt | wc -l
 ## 1048576
-
+## 
 ## real	0m2.472s
 ## user	0m6.068s
 ## sys	0m0.128s
@@ -115,14 +125,16 @@ time sort -u big.txt | wc -l
 
 # Basics
 
-## Some Basics
+##
+### Some Basics
 * No drive letters (yay!)
 * No registry (YAY!)
 * \emph{Everything} is a file.
 * Multi-user design.
 
 
-## Getting Help --- `man`
+##
+### Getting Help --- `man`
 * Manual --- built in help
 * Useful for identifying flags
 * Often not well-written...
@@ -130,7 +142,8 @@ time sort -u big.txt | wc -l
 man ls
 ```
 
-## Getting Help --- The Internet
+##
+### Getting Help --- The Internet
 * search engine
 * stackoverflow
 * Phrases: 
@@ -140,14 +153,16 @@ man ls
     * linux
 
 
-## Searching
+##
+### Searching
 * Many programs (`man`, `less`, `vim`, ...) use `/` to search.
 * Example: start `man ls` and enter: `/disable`
 * Find next match: `n`
 * Find previous match: `N`
 
 
-## Permissions
+##
+### Permissions
 * root --- has access to everything
 * regular user does not:
 * Also group permissions (beyond scope)
@@ -156,12 +171,14 @@ man ls
     * **BE CAREFUL WHEN RUNNING COMMANDS AS ROOT**
 
 
-## Installing Software
+##
+### Installing Software
 * If you have access to root/`sudo`: *very* easy!
 * If you don't, often must build from source (can be hard!)
 
 
-## Example (Ubuntu)
+##
+### Example (Ubuntu)
 ```bash
 tree # not installed!
 sudo apt-get update
@@ -171,13 +188,15 @@ tree
 ```
 
 
-## Interacting with the Shell
+##
+### Interacting with the Shell
 * Tab auto-fills and/or shows options
 * Tab once: complete if possible, otherwise do nothing
 * Tab twice: show possibilities
 
 
-## Making Things Case Insensitvie
+##
+### Making Things Case Insensitvie
 * (Linux Only!): To make your shell case-insensitive.
 * Macs already do this by default.
 
@@ -191,7 +210,8 @@ echo "set completion-ignore-case On" >> ~/.inputrc
 
 
 
-## Flags and Options
+##
+### Flags and Options
 * Passing arguments to a function/command
   * Flags: `-` 
   * Options: `--`
@@ -202,7 +222,8 @@ echo "set completion-ignore-case On" >> ~/.inputrc
     * Shell: `foo -f --option 3`
 
 
-## Why the Multiple Syntax?
+##
+### Why the Multiple Syntax?
 * Flags are always a single character.
 * Multiple charcaters interpreted as multiple flags!
 * `ls -la` same as `ls -al` same as `ls -l -a` 
@@ -214,7 +235,8 @@ echo "set completion-ignore-case On" >> ~/.inputrc
 
 # System Monitoring
 
-## Storage Space
+##
+### Storage Space
 \begin{center}
   \begin{tabular}{ll}\hline
     \textbf{Command} & \textbf{what it does} \\\hline
@@ -224,7 +246,8 @@ echo "set completion-ignore-case On" >> ~/.inputrc
 \end{center}
 
 
-## Example
+##
+### Example
 ```bash
 du /tmp
 df
@@ -233,7 +256,8 @@ df -h
 
 
 
-## Processes
+##
+### Processes
 \begin{center}
   \begin{tabular}{ll}\hline
     \textbf{Command} & \textbf{what it does} \\\hline
@@ -244,7 +268,8 @@ df -h
 \end{center}
 
 
-## Example
+##
+### Example
 ```bash
 top
 ps 12345
@@ -255,7 +280,8 @@ kill 12345
 
 
 # Working with Files
-## Managing Files
+##
+### Managing Files
 
 \begin{center}
   \begin{tabular}{ll}\hline
@@ -269,7 +295,8 @@ kill 12345
 \end{center}
 
 
-## Example
+##
+### Example
 ```bash
 ls
 mkdir mydir
@@ -281,7 +308,8 @@ rm -r mydir
 ```
 
 
-## Paths
+##
+### Paths
 * Separated by `/`
 * Relative: `dir1/dir2`
 * Absolute: `/home/user/dir1/dir2`
@@ -289,15 +317,16 @@ rm -r mydir
 \begin{center}
   \begin{tabular}{ll}\hline
     \textbf{Command} & \textbf{what it does} \\\hline
-    `pwd` & Print working directory \\
-    `.` & Here \\
-    `..` & One directory up \\
-    `~` & Home \\
+    \texttt{pwd} & Print working directory \\
+    \texttt{.} & Here \\
+    \texttt{..} & One directory up \\
+    \texttt{$\sim$} & Home \\
   \end{tabular}
 \end{center}
 
 
-## Dir Dots
+##
+### Dir Dots
 * `.` --- current working directory
 * `..` --- parent working directory
 * `...` --- **not valid**! Means nothing
@@ -306,7 +335,8 @@ rm -r mydir
 * etc.
 
 
-## Example
+##
+### Example
 ```bash
 cd ~
 mkdir examples
@@ -315,12 +345,14 @@ pwd
 ```
 
 
-## Hidden Files
+##
+### Hidden Files
 * Files beginning with `.` are "hidden"
 * See them with `ls -a`
 
 
-## Example
+##
+### Example
 ```bash
 ls
 touch .example
@@ -330,7 +362,8 @@ rm .example
 ```
 
 
-## Interacting with Files
+##
+### Interacting with Files
 \begin{center}
   \begin{tabular}{ll}\hline
     \textbf{Command} & \textbf{what it does} \\\hline
@@ -341,7 +374,8 @@ rm .example
 \end{center}
 
 
-## Example
+##
+### Example
 ```bash
 head /etc/passwd
 tail /etc/passwd
@@ -352,7 +386,8 @@ cat /etc/passwd
 
 
 # Pipes and Redirection
-## Pipes
+##
+### Pipes
 * `|` (`shift`+`\` on American keyboards)
 * Chains together multiple commands
 * Works like function composition:
@@ -363,14 +398,16 @@ cat /etc/passwd
     * `bar x -f | foo --option 3`
 
 
-## Example
+##
+### Example
 ```bash
-ls -l | tail
-ls -l | tail -n 2
+ls -l ~ | tail
+ls -l ~ | tail -n 2
 ```
 
 
-## Redirection
+##
+### Redirection
 \begin{center}
   \begin{tabular}{ll}\hline
     \textbf{Symbol} & \textbf{what it does} \\\hline
@@ -380,7 +417,8 @@ ls -l | tail -n 2
 \end{center}
 
 
-## Example
+##
+### Example
 ```bash
 echo "some text" > myfile
 echo "some text" >> myfile
@@ -392,25 +430,89 @@ echo "some text" >> myfile
 
 # awk/sed/grep
 
-## Meet grep, Your New Best Friend
-* `grep`: Global Regular Expression Printer
+##
+### awk, sed, and grep
+* grep
+    * Global Regular Expression Printer
+    * search text for lines containing a pattern
+* sed
+    * Stream EDitor
+    * operations on lines
+* awk
+    * Named after its authors (Aho, Weinberger, Kernighan)
+    * operations on columns
+* Useful exploratory/preprocessing tools
+
+
+##
+### grep: Your New Best Friend
 * Tool for searching text files with complex patterns.
 * ***EXTREMELY USEFUL***
 * More advanced features next time
+* My 5 Most Used Commands (descending order)
+    * cd
+    * ls
+    * git
+    * vim
+    * grep
 
 
-## My 5 Most Used Commands (descending order)
-* cd
-* ls
-* git
-* vim
-* grep
-
-
-## Searching? Really?
+##
+### Searching? Really?
 * Uses regular expressions
 * Very fast
 * Doesn't load files into memory!
+
+
+##
+### Regular Expressions
+* Concise encapsulation of patterns
+* Look like the result of a cat stomping on your keyboard.
+    * `/^$/d`
+    * `/^$/{p;h;};/./{x;/./p;}`
+* sed and grep use these
+* awk is a little different...
+
+
+##
+### Regular Expressions
+\begin{center}
+  \includegraphics{../pics/perl.png}
+\end{center}
+
+
+##
+### grep: Just the Basics
+* `grep pattern file`
+* `grep -v anti_pattern file`
+* `some_cmd | grep pattern`
+* `grep pattern | grep -v anti_pattern`
+
+
+##
+### Example
+```bash
+grep bash /etc/passwd
+grep bash /etc/passwd | grep -v root
+```
+
+
+##
+### sed: Just the Basics
+* Find and replace
+* EXTREMELY POWERFUL
+* `sed s/pattern/replacement/`
+* `sed s/pattern/replacement/g`
+* "Useful One-Line Scripts for sed":  http://sed.sourceforge.net/sed1line.txt
+
+
+##
+### Example
+```bash
+echo "dog"
+echo "dog" | sed s/dog/cat/
+echo "a b a c a b b" | sed s/a//g
+```
 
 
 
@@ -418,18 +520,16 @@ echo "some text" >> myfile
 
 # Closing
 
-## Putting It All Together
+##
+### Putting It All Together
 * How do we use this stuff!?
 * Next time!
+* Great for small/medium sized data
+* Sometimes acceptable for large-ish data
 
 
-## Misc Useful Stuff
-* Download files: `curl` and `wget`
-* Browse the web like it's 1990: `lynx`
-* Connect to a remote machine: `ssh`
-* Move files to/from remote machines: `scp` and `sftp`
-* Others: https://en.wikipedia.org/wiki/List_of_Unix_utilities
-
-
-## Homework
-
+##
+### Homework
+* On Blackboard
+* Due in 1 week
+* Another will be given Wednesday, also due Monday
