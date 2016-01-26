@@ -1,0 +1,33 @@
+---
+title: 'Homework 2: Shell Scripting'
+output: pdf_document
+---
+
+*Due*: Feb 1, 2016 by the beginning of class.
+
+You can use whatever shell/OS you like, but I will assume you have access to a modern GNU userland/flags, and your work will be graded accordingly.  As such, you are strongly encouraged to use your Ubuntu VM or Newton.
+
+
+Each of these exercises uses the file `iris.csv`, available on blackboard.  You can reproduce this file by entering `write.csv(file="iris.csv", iris)` in R.
+
+
+1. Show valid `awk` or `cut` syntax to remove the first column (the index column) and store the resulting file as `iris.csv`.
+
+
+
+2. Show valid `sed` syntax to convert the csv file into a tab-delimeted file and store the result as `iris.tsv`.  Briefly explain the pros and cons to this approach, as opposed to using a CSV parser.
+
+
+
+3. Show how to downsample the file from 2. to one only containing the observations from the setosa species.  Use `grep`, and call the new file `setosa.tsv`.
+
+
+
+4. Sort the setosa data by sepal width (the second variable) and remove duplicate entries.  Store this as `setosa.tsv`.  How many records were removed?
+
+
+
+5. Supposed you had done all of the above for the virginica species (in a separate file `virginica.tsv`), and you wished to recombine the results into a single file `iris_new.tsv`.  Which command is appropriate for this, `cat` or `join`?  Show how you would do it.
+
+
+
