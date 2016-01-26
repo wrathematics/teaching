@@ -1,0 +1,253 @@
+---
+title: "Basic Shell Scripting"
+author: "Drew Schmidt"
+subtitle: BZAN 583
+output: 
+  pdf_document:
+    latex_engine: xelatex
+---
+
+
+
+# Preliminaries
+
+
+
+
+
+
+# Shell as a Programming Language
+
+The shell, together with many userland utilities such as `[` (people often blur the line between these two distinct things), forms a useful programming language.  However, it is a very strange programming language, unlike any you have dealt with in the past.  For example, its only data type is character, and it has no data structures to speak of.  However, it does have functions.
+
+When we refer to a *shell script*, we generally mean a file containing instructions to be interpreted and executed by the shell (plus userland --- we won't bring this up again).  Some people denote these files with a `.sh` extension, although most don't bother.  Anything you would type into the shell interactively is a good candidate for a shell script.  For example, the canonical "hello world" is:
+
+```bash
+#!/bin/sh
+
+echo hello world
+```
+
+We will come back to the first line in a moment.  The third line is a simple command we are alredy familiar with.  We can save this file as `hw.sh` or merely `hw`, say, by entering this text in our preferred editor and saving the file at a place of our choosing.  Having done so, you would execute the script by entering
+
+```bash
+./hw # or ./hw.sh, depending on how you named it
+```
+
+However, in order for the script to properly execute, you must first change the file's permissions to allow it to be executed.  Permissions become fairly complicated and largely go beyond the scope of this course.  But to make a file executable, you can enter:
+
+```bash
+chmod +x hw
+```
+
+We only have to do this once, and having done so, we can now execute the script as desired.
+
+Finally, of course, the syntax `./hw` executes the script named `hw` in our current working directory, i.e., using a relative path.  We can execute from an absolute path, or a different relative path depending on the current working directory.  For example, say the file is in `~`.  Then we could enter any of:
+
+```bash
+cd ~/.. && ./my_user_name/hw
+
+cd / && ~/hw
+```
+
+
+## Shebang
+
+Although generally not strictly necessary, we often add a "shebang" or a "hashbang" to the beginning of a shell script.
+
+
+Sometimes we legitmately need to use the functionality native to a particular shell.  For example, the BASH shell has loop syntax available that many other shells will not parse.  If you were to use that syntax, even if your native shell is BASH, it is only polite to declare
+
+```bash
+#!/bin/bash
+```
+
+at the start of your script.  If you aren't sure about your use of features, you can always set the shebang to your default shell (which is probably BASH).  Some people look down on this behavior, but it reasonable people recognize it as a practical compromise.
+
+
+
+## Exiting
+
+
+
+
+##
+### Exit status
+* `exit 0`: good
+* Any other number: bad...
+* Check exit status: `echo $?`
+
+
+
+# Variables and Loops
+
+##
+### Variables
+* Character only!
+* Arithmetic is possible, but fiddly
+* Canonical use: storing paths
+* Undefined variables are "blanks"
+
+
+##
+### Variable Syntax
+* Set value of `x` to string `foo` --- `x=foo`
+* Set value of `x` to result of command `bar` --- ``x=`bar` ``
+* Access value of `x` --- `$x`
+* Encase in brackets for safety: `${x}`
+
+
+##
+### Example
+```bash
+x=pwd
+echo $x
+
+x=`pwd`
+echo $x
+
+echo x
+```
+
+
+##
+### Loop Syntax
+```bash
+for var in $VAR; do
+		...
+done
+```
+
+##
+### Inlining a Command
+```bash
+for var in `command`; do
+		...
+done
+```
+
+
+##
+### Example
+```bash
+for i in 1 2 3 4 5 6 7 8 9 10; do
+		echo $i
+done
+```
+
+
+##
+### Example
+```bash
+numbers="1 2 3 4 5 6 7 8 9 10"
+for i in $numbers; do
+    echo $i
+done
+```
+
+
+##
+### Example
+```bash
+for i in `seq 1 10`; do
+    echo $i
+done
+```
+
+
+##
+### Loops Wrapup
+* `while` also possible, but less useful
+* BASH has other `for` loop forms (e.g., `for ((i=1;i<=10;i++))`)
+* Don't forget!
+    * No `$` on name declaration.
+    * Need `$` inside loop body!
+
+
+
+
+
+# Logic
+
+##
+### If Syntax
+```bash
+if [ EXPRESSION ]; then
+    ...
+elif [ EXPRESSION ]
+    ...
+else
+    ...
+fi
+```
+
+
+
+##
+### Operators
+* Negation: `!`
+* And: `EXPRESSION1 -a EXPRESSION2`
+* Or: `EXPRESSION1 -o EXPRESSION2`
+
+##
+### Strings
+* String has non-zero length: `-n STRING`
+    * `-n s` is `true`
+    * `-n ""` is `false`
+* Equality: `STRING1 = STRING2`
+    * `a = a` is `true`
+    * `a = b` is `false`
+* Inequality: `STRING1 != STRING2`
+
+
+##
+### PAY ATTENTION RIGHT THIS SECOND
+![](../pics/nuclear_meltdown.jpg)
+
+
+##
+### The Worst Bug in the World
+* `=` breaks if one string has zero length
+* This happens literally all the time
+* It is very difficult to debug
+* I'M WARNING YOU NOW
+
+
+##
+### Example: WATCH OUT
+```bash
+[ $this_doesnt_exist = foo ]
+echo $?
+## 1
+
+if [ $this_doesnt_exist = foo ];then
+		echo "hi"
+fi
+## bash: [: =: unary operator expected
+```
+
+
+##
+### Solutions
+* Always test if a variable is length 0 (`-n`).
+* Modify your test:
+    ```bash
+    if [ X$this_doesnt_exist = Xfoo ];then
+    ```
+
+
+##
+### Example
+```bash
+if [ ! -e foo ]; then
+    touch foo
+else
+    rm foo
+fi
+```
+
+
+
+
+
+
