@@ -29,13 +29,57 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 
 # Quick Note on Scripting
 
+##
+### Scripting in a Slide
+* Just the very basics (see handout for details).
+* Place your commands in a file.
+* Execute `chmod +x myfile`.
+* Run the script via:
+    * relative path: `./myfile`
+    * absolute path: `/path/to/myfile`
+* The first line can be a "magic comment"
+    * `#!/bin/sh`
+    * `#!/bin/sh`
+* Conditionals and loops are possible, but beyond scope.
+
+##
+### Variables
+* Assign with `=`
+* If a space occurs, put the RHS in quotes
+* Reference with preceeding `$`
+* Store the output of a command with "backticks" `` ` ``
+
+
+##
+### Example
+```bash
+x=something
+x = something # NO!
+
+x="something else"
+
+echo $x
+
+x=`ls ~ | grep D`
+echo $x
+```
+
 
 
 
 # Getting Data
 
+##
+### 
+* `wget`
+* `curl`
+* `sftp`
+
 
 # Inspecting Data
+
+##
+### 
 head/tail, grep, 
 
 ```bash
@@ -45,6 +89,8 @@ head -2 a b
 
 # Summary Statistics
 
+##
+### 
 wc, ...
 
 
@@ -79,12 +125,30 @@ awk '{ sum += $1 } END { print sum/NR }' small.tsv
 
 # Heavy Lifting
 
+##
+###
 
 drop a column with cut
 
+```bash
+cut --complement -f 1 -d, iris.csv  | head
+
+# in place
+mv foo.csv foo.csv.old
+etc.
+```
+
+##
+###
+
 combine two files with cat
 
+##
+###
 remove blank+duplicate lines
+
+##
+### Join
 
 ```
 City,Metro Population
@@ -100,6 +164,9 @@ Memphis,1819
 join -t, a b
 ```
 
+
+##
+###
 
 subset iris with grep
 
@@ -121,6 +188,8 @@ sed -i '1 i\Count,Species' hist.txt
 cat hist.txt
 ```
 
+##
+###
 
 mention gnuplot
 
@@ -128,6 +197,8 @@ mention gnuplot
 
 # Working with R
 
+##
+###
 bringing smaller data back to R
 
 
