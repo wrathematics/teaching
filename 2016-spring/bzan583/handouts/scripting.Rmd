@@ -8,12 +8,10 @@ output:
 ---
 
 
-
-# Preliminaries
-
-
-
-
+```{r, echo=FALSE, message=FALSE}
+library(knitr)
+opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
+```
 
 
 # Shell as a Programming Language
@@ -68,100 +66,123 @@ at the start of your script.  If you aren't sure about your use of features, you
 
 ## Exiting
 
+Every program you execute has an "exit status".  This is a number that indicates if the program's execution was successful or not.  By convention, an exit status of 0 means the execution was a success.  Non-zero values mean something went wrong.  One can inspect the exit status of the last program with the variable `$?`.  So for example:
 
+```{bash}
+ls > /dev/null # don't display output
+echo $?
 
-
-##
-### Exit status
-* `exit 0`: good
-* Any other number: bad...
-* Check exit status: `echo $?`
-
-
-
-# Variables and Loops
-
-##
-### Variables
-* Character only!
-* Arithmetic is possible, but fiddly
-* Canonical use: storing paths
-* Undefined variables are "blanks"
-
-
-##
-### Variable Syntax
-* Set value of `x` to string `foo` --- `x=foo`
-* Set value of `x` to result of command `bar` --- ``x=`bar` ``
-* Access value of `x` --- `$x`
-* Encase in brackets for safety: `${x}`
-
-
-##
-### Example
-```bash
-x=pwd
-echo $x
-
-x=`pwd`
-echo $x
-
-echo x
+ls -V 2> /dev/null
+echo $?
 ```
 
+If a program has non-zero exit status, you can find the meaning of the given number in its man page.  For example, in the manpage for `ls`, we find:
 
-##
-### Loop Syntax
+>    Exit status:
+>       0      if OK,
+>
+>       1      if minor problems (e.g., cannot access subdirectory),
+>
+>       2      if serious trouble (e.g., cannot access command-line argument).
+
+And indeed, `-V` is not a valid flag for our `ls`.
+
+
+
+
+
+
+# Variables
+
+We have already seen several special variables so far, namely `$HOME` and `$?`.  But we can define new variables easily enough. 
+
+The general rules for variables are:
+
+* Assign with `=`
+* If a space occurs, put the RHS in quotes
+* Reference with preceeding `$`
+* Store the output of a command with "backticks" `` ` ``
+
+So for example:
+```{bash}
+x="some text"
+echo $x
+
+x=`ls ~ | grep D`
+echo $x
+```
+
+One thing of interest is that all variables in the shell are character.  Strictly speaking, there are no numeric types, although arithmetic is possible in a variety of ways.  Simple arithmetic can be performed with a judicious usage of `$` and `((`:
+
+```{bash}
+echo $((1+2))
+```
+
+For anything more complicated than this, you need to use a different tool.  Many "old timers" use `bc`, which is very cumbersome.  Today, most people would use R or Python, though.
+
+When referencing the value of a variable, it is often customary to encase the variable name in brackets.  For example, `$HOME` could also be written `${HOME}`.  This is giving extra clues to the shell to make sure that things are interpreted correctly.  It is often not necessary, but sometimes to avoid ambiguity (and bugs), it is, and so if you are unsure, you can reduce the chance for bugs by adding these.
+
+Finally, we note that "undefined" variables are blanks. To prove this, we an print the output of an undefined variable surrounded by other characters:
+
+```{bash}
+echo X${definitely_not_defined}X
+```
+
+This is a very, very important point, which we will return to in a future section.
+
+
+
+
+
+# Loops
+
+Loops are possible in the shell, and the syntax is mostly reminiscent of other programming languages that you are familiar with.  The basic `for` loop syntax looks something like:
+
 ```bash
 for var in $VAR; do
-		...
+    ...
 done
 ```
 
-##
-### Inlining a Command
+where the `...`'s represent our loop body.  Here, the `do` is very important and can not be suppressed.  However, we could put it on the following line if we so chose:
+
+```bash
+for var in $VAR
+do
+    ...
+done
+```
+
+It's a matter of style and personal preference as to how you wish to style these; either is fine.  
+
+Take note of the naming scheme here.  `VAR` is an existing, defined variable, and `var` is a *new* variable which we are defining.  Since `VAR` is already defined, we must reference it with a `$`.  Since `var` is not yet (or is about to be overwritten if it is), we *do not* reference it with a `$`.  This might seem strange, but the rules are entirely consistent with naming and referencing variables, as we have already seen.
+
+We can also inline commands instead of storing their outputs first as a variable `VAR`.  We do this exactly as you might expect:
+
 ```bash
 for var in `command`; do
 		...
 done
 ```
 
+For example, the next three loops have identical behavior:
 
-##
-### Example
 ```bash
 for i in 1 2 3 4 5 6 7 8 9 10; do
 		echo $i
 done
-```
 
-
-##
-### Example
-```bash
 numbers="1 2 3 4 5 6 7 8 9 10"
 for i in $numbers; do
     echo $i
 done
-```
 
-
-##
-### Example
-```bash
 for i in `seq 1 10`; do
     echo $i
 done
 ```
 
-
-##
-### Loops Wrapup
-* `while` also possible, but less useful
-* BASH has other `for` loop forms (e.g., `for ((i=1;i<=10;i++))`)
-* Don't forget!
-    * No `$` on name declaration.
-    * Need `$` inside loop body!
+Finally, `while` loops are also possible, but they are less useful and beyond the scope of this document.  
 
 
 
@@ -169,8 +190,10 @@ done
 
 # Logic
 
-##
-### If Syntax
+Conditionals are possible in the shell, but with a very alien and bizarre syntax and set of rules.  We will highlight only some of the more important issues here.
+
+At its most basic, the `if/then/else` construct found in virtually all programming languages takes the form:
+
 ```bash
 if [ EXPRESSION ]; then
     ...
@@ -181,16 +204,24 @@ else
 fi
 ```
 
+Here, `if` begins a conditional block, and `fi`, cutely, ends it.  As with loops and `for/do`, here we have `if/then`.  Beyond the first condition, any additional condition is given by an `elif` declaration, and a fallback condition denoted by `else`.  Note that in one of the rare instances for the shell, spacing matters very much in `if` declarations.  Such a declaration takes the form:
 
+* `if`
+* space
+* `[`
+* space
+* logical expression
+* space
+* `]`
 
-##
-### Operators
+As one might expect, the usual logical operators exist.  In the shell, they take the form:
+
 * Negation: `!`
 * And: `EXPRESSION1 -a EXPRESSION2`
 * Or: `EXPRESSION1 -o EXPRESSION2`
 
-##
-### Strings
+Unfortunately, logical expressions in the shell are often very cumbersome and unwieldy.  In many languages, a simple `==` suffices.  Not so in the shell!  So say we want to compare two strings.  We have:
+
 * String has non-zero length: `-n STRING`
     * `-n s` is `true`
     * `-n ""` is `false`
@@ -199,45 +230,27 @@ fi
     * `a = b` is `false`
 * Inequality: `STRING1 != STRING2`
 
+Which perhaps looks alright.  Except that, as hinted at above, an undefined variable is a "blank", and *you can not test equality of a string with a blank directly*.
 
-##
-### PAY ATTENTION RIGHT THIS SECOND
 ![](../pics/nuclear_meltdown.jpg)
 
+Example:
 
-##
-### The Worst Bug in the World
-* `=` breaks if one string has zero length
-* This happens literally all the time
-* It is very difficult to debug
-* I'M WARNING YOU NOW
-
-
-##
-### Example: WATCH OUT
-```bash
+```{bash}
 [ $this_doesnt_exist = foo ]
 echo $?
-## 1
-
-if [ $this_doesnt_exist = foo ];then
-		echo "hi"
-fi
-## bash: [: =: unary operator expected
 ```
 
+The solution to this problem is to either:
 
-##
-### Solutions
 * Always test if a variable is length 0 (`-n`).
 * Modify your test:
     ```bash
     if [ X$this_doesnt_exist = Xfoo ];then
     ```
 
+Sadly, logical constructions in the shell are unwieldy for yet another reason.  Using `=` is only valid for strings!  If you want to compare numbers, you would use `-eq` for equality, `-gt` for "greater than", etc.  And there are additional flags for, for example, the existence of a file or directory.  A common construct is to check if a file exists, and if it does do one thing, and if not do another.  A quick example of this is:
 
-##
-### Example
 ```bash
 if [ ! -e foo ]; then
     touch foo
@@ -246,8 +259,6 @@ else
 fi
 ```
 
+This checks if the file `foo` exists, and if not (via the `!`), create an empty file named `foo`, and otherwise (if it exists) delete it.
 
-
-
-
-
+For a full list of these flags, see `man [` or `man test`.
