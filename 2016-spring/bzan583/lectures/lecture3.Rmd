@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Shell Scripting"
+title: "Shell Scripting"
 subtitle: "Spring 2016 BZAN 583"
 author: "Drew Schmidt"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
@@ -21,49 +21,39 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 
 
 
-## Today's Learning Objectives
+##
+### Today's Learning Objectives
 * 
 
 
 
+# Shell as a Programming Language
 
-
-# Regular Expressions
-
-## sed and grep
-* `grep`: Global Regular Expression Printer
-* `sed`: Stream EDitor
-* Also `awk`; beyond scope of this course.
-
-## Regular Expressions
-* 
-
-
-
-
-# Scripting
-
-## Shell Facts
+##
+### Shell Facts
 * Programming language
 * Only one data type (character!)
 * **Many** implementations.
 * Lumped in with userland stuff like `[`
 
 
-## Scripting Basics
+##
+### Scripting Basics
 * Sometimes given file extension `.sh` (many don't bother)
 * Should have executable permissions --- `chmod +x file`
 * Execute with `./` --- `./file`
 
 
-## Example: Hello World
+##
+### Example: Hello World
 ```bash
 echo "echo hello world" > hw.sh
 chmod +x hw.sh
 ./hw.sh
 ```
 
-## 
+##
+### 
 * First line usually a "shebang"
     * `#!/bin/sh`
     * `#!/bin/bash`
@@ -74,7 +64,8 @@ chmod +x hw.sh
 * 
 
 
-## Exit status
+##
+### Exit status
 * `exit 0`: good
 * Any other number: bad...
 * Check exit status: `echo $?`
@@ -83,21 +74,24 @@ chmod +x hw.sh
 
 # Variables and Loops
 
-## Variables
+##
+### Variables
 * Character only!
 * Arithmetic is possible, but fiddly
 * Canonical use: storing paths
 * Undefined variables are "blanks"
 
 
-## Variable Syntax
+##
+### Variable Syntax
 * Set value of `x` to string `foo` --- `x=foo`
 * Set value of `x` to result of command `bar` --- ``x=`bar` ``
 * Access value of `x` --- `$x`
 * Encase in brackets for safety: `${x}`
 
 
-## Example
+##
+### Example
 ```bash
 x=pwd
 echo $x
@@ -109,14 +103,16 @@ echo x
 ```
 
 
-## Loop Syntax
+##
+### Loop Syntax
 ```bash
 for var in $VAR; do
 		...
 done
 ```
 
-## Inlining a Command
+##
+### Inlining a Command
 ```bash
 for var in `command`; do
 		...
@@ -124,7 +120,8 @@ done
 ```
 
 
-## Example
+##
+### Example
 ```bash
 for i in 1 2 3 4 5 6 7 8 9 10; do
 		echo $i
@@ -132,7 +129,8 @@ done
 ```
 
 
-## Example
+##
+### Example
 ```bash
 numbers="1 2 3 4 5 6 7 8 9 10"
 for i in $numbers; do
@@ -141,7 +139,8 @@ done
 ```
 
 
-## Example
+##
+### Example
 ```bash
 for i in `seq 1 10`; do
     echo $i
@@ -149,7 +148,8 @@ done
 ```
 
 
-## Loops Wrapup
+##
+### Loops Wrapup
 * `while` also possible, but less useful
 * BASH has other `for` loop forms (e.g., `for ((i=1;i<=10;i++))`)
 * Don't forget!
@@ -162,7 +162,8 @@ done
 
 # Logic
 
-## If Syntax
+##
+### If Syntax
 ```bash
 if [ EXPRESSION ]; then
     ...
@@ -175,12 +176,14 @@ fi
 
 
 
-## Operators
+##
+### Operators
 * Negation: `!`
 * And: `EXPRESSION1 -a EXPRESSION2`
 * Or: `EXPRESSION1 -o EXPRESSION2`
 
-## Strings
+##
+### Strings
 * String has non-zero length: `-n STRING`
     * `-n s` is `true`
     * `-n ""` is `false`
@@ -190,18 +193,21 @@ fi
 * Inequality: `STRING1 != STRING2`
 
 
-## PAY ATTENTION RIGHT THIS SECOND
+##
+### PAY ATTENTION RIGHT THIS SECOND
 ![](../pics/nuclear_meltdown.jpg)
 
 
-## The Worst Bug in the World
+##
+### The Worst Bug in the World
 * `=` breaks if one string has zero length
 * This happens literally all the time
 * It is very difficult to debug
 * I'M WARNING YOU NOW
 
 
-## Example: WATCH OUT
+##
+### Example: WATCH OUT
 ```bash
 [ $this_doesnt_exist = foo ]
 echo $?
@@ -214,7 +220,8 @@ fi
 ```
 
 
-## Solutions
+##
+### Solutions
 * Always test if a variable is length 0 (`-n`).
 * Modify your test:
     ```bash
@@ -222,7 +229,8 @@ fi
     ```
 
 
-## Example
+##
+### Example
 ```bash
 if [ ! -e foo ]; then
     touch foo
@@ -230,4 +238,116 @@ else
     rm foo
 fi
 ```
+
+
+
+
+
+
+
+
+
+
+# Getting Data
+
+
+# Inspecting Data
+head/tail, grep, 
+
+```bash
+head -2 a b
+```
+
+
+# Summary Statistics
+
+wc, ...
+
+
+```bash
+sort -u big.txt | wc -l
+```
+
+
+##
+### Examples
+```bash
+# convert csv to tsv
+sed 's/,/\t/g' small.csv > small.tsv
+
+
+awk 'BEGIN {FS=OFS=","} 
+
+
+# sum column
+awk '{ sum += $1 } END { print sum }' small.tsv
+
+# average column
+awk '{ sum += $1 } END { print sum/NR }' small.tsv
+
+
+```
+
+
+
+
+
+
+# Heavy Lifting
+
+
+drop a column with cut
+
+combine two files with cat
+
+remove blank+duplicate lines
+
+```
+City,Metro Population
+Knoxville,852715
+Nashville,1757912
+Memphis,1341746
+
+City,Founded
+Knoxville,1791
+Nashville,1779
+Memphis,1819
+
+join -t, a b
+```
+
+
+subset iris with grep
+
+```bash
+# histogram
+tail -n +2 iris.csv | cut -d, -f 6 | sort | uniq -c
+
+
+tail -n +2 iris.csv | tail -n +5 | cut -d, -f 6 | sort | uniq -c | sort -rn
+
+
+
+tail -n +2 iris.csv | tail -n +5 | head -n -3 > newiris.csv
+tail -n +2 newiris.csv | tail -n +5 | cut -d, -f 6 | sort | uniq -c | sort -rn > hist.txt
+cat hist.txt
+sed -i -e 's/^ *//g' -e 's/ /,/' hist.txt
+cat hist.txt
+sed -i '1 i\Count,Species' hist.txt
+cat hist.txt
+```
+
+
+mention gnuplot
+
+
+
+# Working with R
+
+bringing smaller data back to R
+
+
+
+
+
 
