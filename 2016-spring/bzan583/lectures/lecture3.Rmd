@@ -1,5 +1,5 @@
 ---
-title: "Shell Scripting"
+title: "Working with Data in the Shell"
 subtitle: "Spring 2016 BZAN 583"
 author: "Drew Schmidt"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
@@ -23,7 +23,9 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 
 ##
 ### Today's Learning Objectives
-* 
+* Learn about variables in the shell.
+* See some techniques for basic data analysis.
+* See supplemental document if you want to know more about shell programming.
 
 
 
@@ -67,109 +69,102 @@ echo $x
 
 
 
-# Getting Data
+# Getting Data and Inspecting
 
 ##
-### 
+### Data Download/Transfer Tools
 * `wget`
 * `curl`
 * `sftp`
 
 
-# Inspecting Data
+##
+### Extracting Data from Archives
+* `tar zxf archive.tar.gz`
+* `gunzip archive.gz`
+* `unzip archive.zip`
+
 
 ##
-### 
-head/tail, grep, 
+### Basic Inspection Tools
+* `head`/`tail`
+* `grep`
+* `less`
 
+
+##
+### Example
 ```bash
-head -2 a b
+head -2 pop.csv founded.csv
+
+grep -i nashville *.csv
+
+less diamonds.csv
 ```
 
 
-# Summary Statistics
+
+
+
+# Processing Data
 
 ##
-### 
-wc, ...
+### Some Advice
+* Downsampling? Try `grep`.
+* Editing entries? Try `sed`.
+* Working with columns?  `awk`, plus some others.
+* The more complicated your task, the less suitable the shell is for it!
+* For simple tasks, very powerful.
 
 
+
+##
+### Dropping Lines
 ```bash
-sort -u big.txt | wc -l
+sed -i /^$/d diamonds.tsv
+
+sort -u diamonds.tsv
 ```
 
 
+
 ##
-### Examples
+### Convert CSV to TSV
 ```bash
-# convert csv to tsv
-sed 's/,/\t/g' small.csv > small.tsv
+sed 's/,/\t/g' diamonds.csv | head
+sed 's/,/\t/g' diamonds.csv > diamonds.tsv
 
-
-awk 'BEGIN {FS=OFS=","} 
-
-
-# sum column
-awk '{ sum += $1 } END { print sum }' small.tsv
-
-# average column
-awk '{ sum += $1 } END { print sum/NR }' small.tsv
-
-
+awk 'BEGIN {FS="\t"; OFS=","} {$1=$1; print}' diamonds.csv > diamonds.tsv
 ```
 
 
+##
+### A Word of Caution
+* I claim "there is no such thing as a CSV".
+* *Regular expressions are not substitutes for parsers.*
+* Consider: `1,"2,\"3,4\",5",6`
+    * How many fields would most people say?
+    * How many fields does `sed` say?
+* Nothing is ever easy. Think about what you're doing!
 
 
-
-
-# Heavy Lifting
 
 ##
-###
-
-drop a column with cut
-
+### Dropping a Variable
 ```bash
-cut --complement -f 1 -d, iris.csv  | head
+cut --complement -f 3 diamonds.tsv  | head
 
-# in place
-mv foo.csv foo.csv.old
-etc.
-```
+cut --complement -f 3 -d, diamonds.csv  | head
 
-##
-###
-
-combine two files with cat
-
-##
-###
-remove blank+duplicate lines
-
-##
-### Join
-
-```
-City,Metro Population
-Knoxville,852715
-Nashville,1757912
-Memphis,1341746
-
-City,Founded
-Knoxville,1791
-Nashville,1779
-Memphis,1819
-
-join -t, a b
+mv diamonds.csv diamonds.csv.old
+cut --complement -f 3 -d, diamonds.csv.old > diamonds.csv
+rm diamonds.csv.old
 ```
 
 
+
 ##
-###
-
-subset iris with grep
-
+### Subsetting Diamonds
 ```bash
 # histogram
 tail -n +2 iris.csv | cut -d, -f 6 | sort | uniq -c
@@ -188,21 +183,127 @@ sed -i '1 i\Count,Species' hist.txt
 cat hist.txt
 ```
 
-##
-###
-
-mention gnuplot
 
 
 
-# Working with R
+
+# Combining Files
 
 ##
+### Combining Files
+* `cat` and `crop`
+* Handles simple things very well.
+* For complex tasks, use the appropriate tool.
+
+
+##
+### Example Data
+```bash
+cat pop.csv
+## City,Metro Population
+## Knoxville,852715
+## Nashville,1757912
+## Memphis,1341746
+
+cat founded.csv
+## City,Founded
+## Knoxville,1791
+## Nashville,1779
+## Memphis,1819
+```
+
+
+## 
+### Cat: Stacking Files
+\begin{center}
+  \includegraphics[width=.85\textwidth]{../pics/cat}
+\end{center}
+
+
+##
+### Stacking Files with cat
+```bash
+cat pop.csv founded.csv > stacked.csv
+cat stacked.csv
+```
+
+
+##
+### Join
+\begin{center}
+  \includegraphics[width=.85\textwidth]{../pics/join}
+\end{center}
+
+
+##
+### Joining with join
+```bash
+join -t, pop.csv founded.csv > joined.csv
+```
+
+
+
+
+
+
+# Summarizing Data
+
+##
+### Counts
+```bash
+wc diamonds.csv
+wc -l diamonds.csv
+wc -l diamonds.csv | sed 's/ .*//'
+```
+
+
+##
+### Unique Rows
+```bash
+sort -u diamonds.csv | wc -l
+
+
+tot=`wc -l diamonds.csv | sed 's/ .*//'`
+unq=`sort -u diamonds.csv | wc -l`
+echo $(($tot - $unq))
+```
+
+
+##
+### Basic Variable Operations
+```bash
+awk -F '\t' '{ sum += $5 } END { print sum }' diamonds.tsv
+awk -F ',' '{ sum += $5 } END { print sum }' diamonds.csv
+
+awk -F '\t' '{ sum += $5 } END { print sum/NR }' diamonds.tsv
+awk -F '\t' '{ sum += $4 } END { print sum/NR }' diamonds.tsv
+```
+
+
+##
+### Making a Histogram
+```bash
+# histogram
+tail -n +2 diamonds.csv | cut -d, -f 2 | sort | uniq -c > hist.txt
+cat hist.txt
+sort -rn hist.txt -o hist.txt
+cat hist.txt
+
+
+sed -i -e 's/^ *//g' -e 's/ /,/' hist.txt
+cat hist.txt
+sed -i '1 i\Count,Cut' hist.txt
+cat hist.txt
+```
+
+
+
+
+# Wrapup
+
+##
 ###
-bringing smaller data back to R
-
-
-
-
+* Remarkably useful for simple tasks.
+* 
 
 
