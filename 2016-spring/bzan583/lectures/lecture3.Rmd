@@ -121,9 +121,11 @@ less diamonds.csv
 ##
 ### Dropping Lines
 ```bash
-sed -i /^$/d diamonds.tsv
+sed -i /^$/d diamonds.csv | head
 
-sort -u diamonds.tsv
+sort -u diamonds.csv | head
+
+tail -n +2 diamonds.csv | head
 ```
 
 
@@ -134,7 +136,7 @@ sort -u diamonds.tsv
 sed 's/,/\t/g' diamonds.csv | head
 sed 's/,/\t/g' diamonds.csv > diamonds.tsv
 
-awk 'BEGIN {FS="\t"; OFS=","} {$1=$1; print}' diamonds.csv > diamonds.tsv
+awk 'BEGIN {FS=","; OFS="\t"} {$1=$1; print}' diamonds.csv | head
 ```
 
 
@@ -152,6 +154,7 @@ awk 'BEGIN {FS="\t"; OFS=","} {$1=$1; print}' diamonds.csv > diamonds.tsv
 ##
 ### Dropping a Variable
 ```bash
+cut -f 3 diamonds.tsv  | head
 cut --complement -f 3 diamonds.tsv  | head
 
 cut --complement -f 3 -d, diamonds.csv  | head
@@ -166,21 +169,11 @@ rm diamonds.csv.old
 ##
 ### Subsetting Diamonds
 ```bash
-# histogram
-tail -n +2 iris.csv | cut -d, -f 6 | sort | uniq -c
+grep Premium diamonds.tsv | head
 
+grep -v Premium diamonds.tsv | head
 
-tail -n +2 iris.csv | tail -n +5 | cut -d, -f 6 | sort | uniq -c | sort -rn
-
-
-
-tail -n +2 iris.csv | tail -n +5 | head -n -3 > newiris.csv
-tail -n +2 newiris.csv | tail -n +5 | cut -d, -f 6 | sort | uniq -c | sort -rn > hist.txt
-cat hist.txt
-sed -i -e 's/^ *//g' -e 's/ /,/' hist.txt
-cat hist.txt
-sed -i '1 i\Count,Species' hist.txt
-cat hist.txt
+grep "Premium\|Very Good" diamonds.tsv | head
 ```
 
 
@@ -258,7 +251,7 @@ wc -l diamonds.csv | sed 's/ .*//'
 
 
 ##
-### Unique Rows
+### Unique Observations
 ```bash
 sort -u diamonds.csv | wc -l
 
@@ -302,8 +295,10 @@ cat hist.txt
 # Wrapup
 
 ##
-###
+### Using the Shell for Data Processing and Analysis
 * Remarkably useful for simple tasks.
-* 
+* The more complex the task, less appropriate shell is.
+* `sed` and `grep` are standard tools in the field. Learn them!
+* Homework.
 
 
