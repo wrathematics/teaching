@@ -8,10 +8,11 @@ output: pdf_document
 You can use whatever shell/OS you like, but I will assume you have access to a modern GNU userland/flags, and your work will be graded accordingly.  As such, you are strongly encouraged to use your Ubuntu VM or Newton.
 
 
-Each of these exercises uses the file `iris.csv`, available on blackboard.  You can reproduce this file by entering `write.csv(file="iris.csv", iris)` in R.
+Each of these exercises uses the file `iris.csv`, available on blackboard.  You can reproduce this file by entering `write.csv(file="iris.csv", iris)` in R.  You are only allowed to use the tools introduced in class (e.g., no perl, R, python, ...).
 
 
-1. (10 pts) Show valid `awk` or `cut` syntax to remove the first column (the index column) and store the resulting file as `iris.csv`.
+
+1. (10 pts) Show valid shell syntax using `cut` to remove the first column (the index column) and store the resulting file as `iris.csv`.
 
 
 
