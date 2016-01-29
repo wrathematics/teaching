@@ -3,7 +3,7 @@ title: 'Homework 2: Shell Scripting'
 output: pdf_document
 ---
 
-*Due*: Feb 1, 2016 by the beginning of class.
+*Due*: Friday, Feb 5, 2016 by 5:00pm.
 
 You can use whatever shell/OS you like, but I will assume you have access to a modern GNU userland/flags, and your work will be graded accordingly.  As such, you are strongly encouraged to use your Ubuntu VM or Newton.
 
@@ -16,16 +16,17 @@ Each of these exercises uses the file `iris.csv`, available on blackboard.  You 
 
 
 
-2. (10 pts) Show valid `sed` syntax to convert the csv file into a tab-delimeted file and store the result as `iris.tsv`.  Briefly explain the pros and cons to this approach, as opposed to using a CSV parser.
+2. (10 pts) Show valid `sed` syntax to convert the csv file into a tab-delimeted file and store the result as `iris.tsv`.  Briefly explain the pros and cons to this approach (i.e, using `sed` as opposed to using a CSV parser).
 
 
 
-3. (10 pts) Show how to downsample the file from problem 2. to a new file containing only the observations from the setosa species.  Call the new file `setosa.tsv`. (Hint: `grep`).
+3. (10 pts) Show how to downsample the file from problem 2 to a new file containing only the observations from the "setosa" species.  Call the new file `setosa.tsv`. (Hint: `grep`).  Don't try to keep the "header" line (your downsampling will not preserve it).
 
 
 
-4. (10 pts) Sort the setosa data by sepal width (the second variable) and remove duplicate entries.  Store this as `setosa.tsv`.  How many records were removed?  Show all of the commands you used.
+4. (10 pts) Sort the setosa data from problem 3 by sepal width (the second variable) and remove duplicate entries.  Store this as `setosa.tsv`.  How many records were removed?  Show all of the commands you used.
 
 
 
-5. (10 pts) Supposed you had done all of the above for the virginica species (in a separate file `virginica.tsv`), and you wished to recombine the results into a single file `iris_new.tsv`.  Which command is appropriate for this, `cat` or `join`?  Show how you would do it.
+5. (10 pts) Suppose you had done the steps in problems 2, 3, and 4 for the virginica species in a separate file called `virginica.tsv` (you don't need to actually do this), and that you wished to recombine the results into a single file `iris_new.tsv`.  Between the two, which command is most appropriate for this re-combining, `cat` or `join`?  Show how you would do it.  (Don't add a "header" line to the final file, just the data).
+

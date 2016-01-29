@@ -300,5 +300,5 @@ cat hist.txt
 * The more complex the task, less appropriate shell is.
 * `sed` and `grep` are standard tools in the field. Learn them!
 * Homework.
-
+* Next time: git and GitHub
 

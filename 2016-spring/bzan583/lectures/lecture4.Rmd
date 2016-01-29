@@ -1,0 +1,51 @@
+---
+title: "Introduction to git and GitHub"
+subtitle: "Spring 2016 BZAN 583"
+author: "Drew Schmidt"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  beamer_presentation:
+    toc: true
+    keep_tex: true
+    highlight: tango
+    theme: "Frankfurt"
+    slide_level: 2
+    includes:
+      in_header: include/slides_header.tex
+---
+
+```{r, echo=FALSE, message=FALSE}
+library(knitr)
+opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
+```
+
+
+
+##
+### Today's Learning Objectives
+*
+
+
+# Background
+
+##
+### Data Management
+* CODE ***IS*** DATA
+* For many, code *most important* data they have!
+
+vcs, need, why git, git vs gh
+
+
+
+# git Terminology
+
+
+
+# git
+
+
+# GitHub
+
+
+
+
