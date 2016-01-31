@@ -36,12 +36,20 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 vcs, need, why git, git vs gh
 
 
+# Version Control
 
-# git Terminology
+# git vs GitHub
+* git: Version control system
+* GitHub: Web interface for git + cloud backup
+
+
 
 
 
 # git
+
+## 
+### git Terminology
 
 
 # GitHub
