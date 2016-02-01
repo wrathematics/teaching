@@ -51,6 +51,11 @@ vcs, need, why git, git vs gh
 ##
 ### Story Time!
 
+# Version Control
+
+# git vs GitHub
+* git: Version control system
+* GitHub: Web interface for git + cloud backup
 
 
 ##
@@ -121,6 +126,8 @@ vcs, need, why git, git vs gh
 
 
 
+## 
+### git Terminology
 
 
 # GitHub
