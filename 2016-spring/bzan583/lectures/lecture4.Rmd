@@ -22,19 +22,31 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 
 
 ##
+### Homework 2
+* Live on BlackBoard now
+* Due Friday before midnight.
+* USE THE NOTES
+* Questions?
+
+
+##
 ### Today's Learning Objectives
-*
+* Learn about the how's and why's of version control.
+* Learn some basic `git` workflows.
+* Understand the difference between git and GitHub.
+
+
 
 
 # Background
 
 ##
 ### Data Management
-* Data Management
+* "They're going to have to know it when they get to work, so sure.  Good idea."
 * CODE ***IS*** DATA
 * For many, code *most important* data they have!
+* Learning to manage code well a *critical skill*.
 
-vcs, need, why git, git vs gh
 
 ##
 ### File Management Without Version Control
@@ -50,6 +62,19 @@ vcs, need, why git, git vs gh
 
 ##
 ### Story Time!
+Names have been changed to protect the innocent.
+
+
+##
+### Question
+* Would you...
+    * Use Word without "track changes"?
+    * 
+* SO DON'T WRITE CODE WITHOUT GIT!
+
+
+
+
 
 # Version Control
 
@@ -68,14 +93,18 @@ vcs, need, why git, git vs gh
 ##
 ### Philosophy
 * How often to commit?
-
+* How "big" should each commit be?
+* Kind of irrelevant; just do what works for you/your team.
 
 
 ##
 ### Terminology
-* repository (repo)
-* remote
-* fork
+* repository (repo): 
+* remote: a repository stored somewhere else (like a cloud backup)
+* fork: 
+* diff: 
+
+
 
 
 
@@ -84,18 +113,38 @@ vcs, need, why git, git vs gh
 ##
 ### 99% of Commands You Need
 * `git init`: create new git repo
-* `git log`: 
 * `git status`: see what files have changed
 * `git add`: "stage" files
 * `git commit`: commit changes to repo
+* `git log`: show commit log
+* `git diff`: show what has changed
+* `git show`: look at old diffs
 * `git push`: send changes to remote
-* 
+* `git pull`: grab changes from remote
 
 
 ##
 ### .gitignore
+* Some files (often binary) you *never* want to track:
+    * .pdf
+    * .exe
+    * .o
+    * knitr cache files
+    * etc.
+* Avoid them showing up in your search path with `.gitignore`.
 
 
+##
+### Example .gitignore File
+```
+*~
+*.pdf
+*.html
+*.swp
+
+src/*.o
+src/*.so
+```
 
 
 
@@ -105,21 +154,12 @@ vcs, need, why git, git vs gh
 # Live Demo
 
 ## 
-### 
-
-
-
-
-
-
-
-
-# Advanced Topics
-
-##
-### Fixing Broken Things
-* 
-* https://github.com/k88hudson/git-flight-rules
+### Setting up
+* Install git...
+* You can work from a Linux VM, Newton, or your laptop:
+    * **Windows**: Open "git shell".
+    * **Mac**: Open Terminal.App.
+    * **Linux**: Open a terminal.
 
 
 
@@ -138,8 +178,9 @@ vcs, need, why git, git vs gh
 
 
 ##
-### 
+### Do Me a Favor?
 * Everyone go star this repo: https://github.com/heckendorfc/harp
+* Trust me, it'll be hilarious
 
 
 
@@ -148,9 +189,31 @@ vcs, need, why git, git vs gh
 
 
 
+# Wrapup
+
+##
+### Advanced Topics
+* Branching
+* Stashing
+* Rewriting history
+* Fixing broken things (bad merges, ...)
+* Some useful links:
+    * Advanced git: https://help.github.com/categories/advanced-git/
+    * git Flight Rules: https://github.com/k88hudson/git-flight-rules
 
 
+##
+### Really Learning git
+* Just use it.
+* Make mistakes and break stuff.
+* Keep at it.
 
 
+##
+### Wrapup
+* It's been fun!
+* git homework coming soon.
+* Don't forget about HW2.
+* Thanks!
 
 
