@@ -1,5 +1,16 @@
 # BZAN 583
 
+
+## Handouts
+
+* Setting Up Your Ubuntu Environment [pdf](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/handouts/1_setup.pdf)
+* Editing Text in the Shell [pdf](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/handouts/2_editors.pdf)
+* ssh Basics [pdf](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/handouts/3_ssh.pdf)
+* Basic Shell Scripting [pdf](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/handouts/4_scripting.pdf)
+
+
+## Lectures and Homework
+
 * Lecture 2: Introduction to the Shell
     * Lecture [ [slides](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/lectures/lecture2.pdf) | [handout](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/lectures/lecture2_handout.pdf) ]
     * [homework](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/homework/homework1.pdf)
