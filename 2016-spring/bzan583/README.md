@@ -1,5 +1,19 @@
 # BZAN 583
 
-Some lecture notes, covering basic *nix scripting and git usage.
+* Lecture 2: Introduction to the Shell
+    * Lecture [ [slides](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/lectures/lecture2.pdf) | [handout](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/lectures/lecture2_handout.pdf) ]
+    * [homework](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/homework/homework1.pdf)
+* Lecture 3: Working with Data in the Shell
+    * Lecture [ [slides](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/lectures/lecture3.pdf) | [handout](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/lectures/lecture3_handout.pdf) ]
+    * [script](https://raw.githubusercontent.com/wrathematics/teaching/master/2016-spring/bzan583/lectures/lec3.sh)
+    * [data.tar.gz](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/lectures/data.tar.gz)
+    * [homework](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/homework/homework2.pdf)
+    * [iris.csv](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/homework/iris.csv)
+* Lecture 4: Introduction to git and GitHub
+    * Lecture [ [slides](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/lectures/lecture4.pdf) | [handout](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/lectures/lecture4_handout.pdf) ]
+    * [demo script](https://raw.githubusercontent.com/wrathematics/teaching/master/2016-spring/bzan583/lectures/lec4.out)
+    * homework
+
+
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="./pics/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
