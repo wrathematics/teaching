@@ -57,20 +57,21 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 * file2a1.txt
 * file2a1_final.txt
 * file2a1_final1.txt
+* file2a1_final1_FINALFINALFORREAL.txt
+* file2a1_final1_FINALFINALFORREAL_a.txt
 * ...
 
 
 ##
 ### Story Time!
-Names have been changed to protect the innocent.
+* Preparing for lecture 1!
+* A consultation...
 
 
 ##
-### Question
-* Would you...
-    * Use Word without "track changes"?
-    * 
-* SO DON'T WRITE CODE WITHOUT GIT!
+### tl;dr
+If you're collaborating on code, ***USE VERSION CONTROL***.
+
 
 
 
@@ -78,16 +79,39 @@ Names have been changed to protect the innocent.
 
 # Version Control
 
-# git vs GitHub
+##
+### Version Control
+* From https://en.wikipedia.org/wiki/Version_control: 
+
+> [Version control is] the management of changes to documents, computer programs, large web sites, and other collections of information
+
+* Also sometimes called "revision control" and "source control".
+
+
+##
+### VC Systems
+* cvs
+* svn
+* git
+* Hg (mercurial)
+* Some commercial ones (perforce, ...)
+* Lots more https://en.wikipedia.org/wiki/Comparison_of_version_control_software
+
+
+##
+### git vs GitHub
 * git: Version control system
 * GitHub: Web interface for git + cloud backup
+* We'll return to this topic later.
 
 
 ##
 ### File Management With Version Control
-* Make your edits.
-* Commit them.
-* Search history whenever you want.
+1. Create repo
+2. Create/edit files
+3. Commit changes, possibly push to a remote at some point.
+4. Search history/revert as needed.
+5. go to 2.
 
 
 ##
@@ -99,10 +123,15 @@ Names have been changed to protect the innocent.
 
 ##
 ### Terminology
-* repository (repo): 
-* remote: a repository stored somewhere else (like a cloud backup)
-* fork: 
-* diff: 
+* **repository**: (repo): where all the files and changes live
+* **staging**: preparing to add changes to a repo
+* **commit**: add changes to a repo
+* **fork**: a copy of a repository
+* **diff**: differences between files/commits
+* **branch**: a bit advanced. All of ours are called "master"
+* **remote**: a repository stored somewhere else (like a cloud backup)
+* **origin**: common name for a remote in git world
+* More: https://en.wikipedia.org/wiki/Version_control#Common_vocabulary
 
 
 
@@ -111,16 +140,43 @@ Names have been changed to protect the innocent.
 # git
 
 ##
+### What is git?
+* A VCS
+* VERY FAST!
+* Emphasizes data integrity.
+* *distributed*
+* Ludicrously, unbelievably useful.
+* My 5 Most Used Commands (descending order)
+    1. cd
+    2. ls
+    3. git
+    4. vim
+    5. grep
+
+
+##
+### Distributed VCS
+* git is *distributed*
+* Each developer has a local copy, merging changes into a remote repo.
+* commit is not the same as commit/push
+
+
+##
 ### 99% of Commands You Need
 * `git init`: create new git repo
-* `git status`: see what files have changed
+* `git status`: see what files have changed/been added
 * `git add`: "stage" files
 * `git commit`: commit changes to repo
+* `git push`: send changes to remote
+* `git pull`: grab changes from remote
+
+
+##
+### 99.9% of Commands You Need
+* The aforementioned
 * `git log`: show commit log
 * `git diff`: show what has changed
 * `git show`: look at old diffs
-* `git push`: send changes to remote
-* `git pull`: grab changes from remote
 
 
 ##
@@ -166,23 +222,58 @@ src/*.so
 
 
 
-## 
-### git Terminology
-
-
 # GitHub
 
 ##
+### What is GitHub?
+* Private company
+* Hosts git repositories
+* Open repos free; private cost (a lot of!) money.
+* Also a gui for the painful parts of git.
+* Student developer pack: https://education.github.com/
+
+
+##
 ### ~Social Coding~
-* 
+* You can ~favorite~ repos.
+* Easily fork.
+* Open "issues", submit "pull requests" (patches).
+* Also gives free web hosting!
+    * Live: http://knoxrug.github.io/
+    * Source: https://github.com/KnoxRUG/KnoxRUG.github.io
+
+
+##
+### GitHub
+* "Facebook for programmers."
+* Dropbox for programmers.
 
 
 ##
 ### Do Me a Favor?
 * Everyone go star this repo: https://github.com/heckendorfc/harp
-* Trust me, it'll be hilarious
+* Trust me, it'll be hilarious.
 
 
+## 
+### Adding a Remote
+* You can use `https` or `git` protocols (latter if you set up ssh keys)
+* Example:
+```bash
+git remote add NameOfOrigin NameOfBranch
+```
+
+
+##
+### Remote Naming
+* General convention to call it "origin"
+* If you have more than one, give it a useful name.
+* You probably shouldn't have more than one any time soon...
+
+
+##
+### Using GitHub (for actual work)
+Let's move our example repo from earlier to GitHub.
 
 
 
@@ -200,6 +291,12 @@ src/*.so
 * Some useful links:
     * Advanced git: https://help.github.com/categories/advanced-git/
     * git Flight Rules: https://github.com/k88hudson/git-flight-rules
+
+
+##
+### Other Stuff
+* Other gui's (don't know don't care)
+* RStudio integrates with git (see above)
 
 
 ##

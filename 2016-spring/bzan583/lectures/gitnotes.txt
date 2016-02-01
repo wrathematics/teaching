@@ -1,5 +1,0 @@
-while making these very slides
-
-clean()
-
-removed the source! Thank fuck for git
