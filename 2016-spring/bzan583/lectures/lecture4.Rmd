@@ -30,21 +30,119 @@ opts_chunk$set(cache=TRUE, fig.align="center", fig.width=5, fig.height=3)
 
 ##
 ### Data Management
+* Data Management
 * CODE ***IS*** DATA
 * For many, code *most important* data they have!
 
 vcs, need, why git, git vs gh
 
+##
+### File Management Without Version Control
+* file.txt
+* file1.txt
+* file2.txt
+* file2a.txt
+* file2a1.txt
+* file2a1_final.txt
+* file2a1_final1.txt
+* ...
 
 
-# git Terminology
+##
+### Story Time!
+
+
+
+##
+### File Management With Version Control
+* Make your edits.
+* Commit them.
+* Search history whenever you want.
+
+
+##
+### Philosophy
+* How often to commit?
+
+
+
+##
+### Terminology
+* repository (repo)
+* remote
+* fork
 
 
 
 # git
 
+##
+### 99% of Commands You Need
+* `git init`: create new git repo
+* `git log`: 
+* `git status`: see what files have changed
+* `git add`: "stage" files
+* `git commit`: commit changes to repo
+* `git push`: send changes to remote
+* 
+
+
+##
+### .gitignore
+
+
+
+
+
+
+
+
+# Live Demo
+
+## 
+### 
+
+
+
+
+
+
+
+
+# Advanced Topics
+
+##
+### Fixing Broken Things
+* 
+* https://github.com/k88hudson/git-flight-rules
+
+
+
+
+
+
+
 
 # GitHub
+
+##
+### ~Social Coding~
+* 
+
+
+##
+### 
+* Everyone go star this repo: https://github.com/heckendorfc/harp
+
+
+
+
+
+
+
+
+
+
 
 
 
