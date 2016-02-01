@@ -1,0 +1,429 @@
+$ cd ~
+$ mkdir project
+$ cd project
+$ git init
+Initialized empty Git repository in /home/mschmid3/project/.git/
+$ ls
+$ ls -a
+.  ..  .git
+$ ls .git
+branches  info     refs    description
+hooks     objects  config  HEAD
+$ cat .git/config 
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+$ vim hw.r
+т╜  "hw.r" [New File] hw.r                                           1                                         ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                              N  тото  1:hw.r          тотото 100% тнб   0:  0  i   I  тото         тотото 100% тнб   0:  1  + hw.r p+1:  2r3print6()7")8h)9e)10l)1l)2o)3 )4w)5o)6r)7l)8d)9")20 621  N  тото         тотото 100% тнб   1: 20  1:hw.r+::wq"hw.r" [New] 1L, 21C written
+$ cat hw.r 
+print("hello world")
+$ Rscript hw.r 
+[1] "hello world"
+$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	hw.r
+
+nothing added to commit but untracked files present (use "git add" to track)
+$ git add hw.r 
+$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   hw.r
+
+$ git commit -m "initial commit"
+[master (root-commit) b1ed68b] initial commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hw.r
+$ git status
+On branch master
+nothing to commit, working directory clean
+$ git log
+commit b1ed68bdb4806c798f1a66735019e4796aad7667
+Author: wrathematics <wrathematics@gmail.com>
+Date:   Mon Feb 1 14:44:43 2016 -0500
+
+    initial commit
+$ git blame
+usage: git blame [<options>] [<rev-opts>] [<rev>] [--] <file>
+
+    <rev-opts> are documented in git-rev-list(1)
+
+    --incremental         Show blame entries as we find them, incrementally
+    -b                    Show blank SHA-1 for boundary commits (Default: off)
+    --root                Do not treat root commits as boundaries (Default: off)
+    --show-stats          Show work cost statistics
+    --score-debug         Show output score for blame entries
+    -f, --show-name       Show original filename (Default: auto)
+    -n, --show-number     Show original linenumber (Default: off)
+    -p, --porcelain       Show in a format designed for machine consumption
+    --line-porcelain      Show porcelain format with per-line commit information
+    -c                    Use the same output mode as git-annotate (Default: off)
+    -t                    Show raw timestamp (Default: off)
+    -l                    Show long commit SHA1 (Default: off)
+    -s                    Suppress author name and timestamp (Default: off)
+    -e, --show-email      Show author email instead of name (Default: off)
+    -w                    Ignore whitespace differences
+    --minimal             Spend extra cycles to find better match
+    -S <file>             Use revisions from <file> instead of calling git-rev-list
+    --contents <file>     Use <file>'s contents as the final image
+    -C[<score>]           Find line copies within and across files
+    -M[<score>]           Find line movements within and across files
+    -L <n,m>              Process only line range n,m, counting from 1
+    --abbrev[=<n>]        use <n> digits to display SHA-1s
+
+$ git blame hw.r
+^b1ed68b (wrathematics 2016-02-01 14:44:43 -0500 1) print("hello world")
+$ vim hw.r 
+т╜  "hw.r" 1L, 21C hw.r                                           1 print("hello world")                    ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                              N  тото  1:hw.r          тотото 100% тнб   1: 20  1:hw.ra   I  тото         тотото 100% тнб   1: 21  + hw.r l+2(")lj3a4k5f6s7d8f9j30a1l2k3s4d5f6  N  тото         тотото 100% тнб   1: 35  ::wq"hw.r" 1L, 36C written    1 print("hello world")ljakfsdfjalksdf
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ~~~~~~~~~~~~~ 
+$ Rscript hw.r 
+Error: unexpected symbol in "print("hello world")ljakfsdfjalksdf"
+Execution halted
+$ git add hw.r 
+$ git commit -m "a dumb commit"
+[master 868bd80] a dumb commit
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git status
+On branch master
+nothing to commit, working directory clean
+$ git log
+commit 868bd80bce1753e5f53ddad18fd69839d527e0f1
+Author: wrathematics <wrathematics@gmail.com>
+Date:   Mon Feb 1 14:47:06 2016 -0500
+
+    a dumb commit
+
+commit b1ed68bdb4806c798f1a66735019e4796aad7667
+Author: wrathematics <wrathematics@gmail.com>
+Date:   Mon Feb 1 14:44:43 2016 -0500
+
+    initial commit
+$ git reset --hard b1ed68bdb4806
+HEAD is now at b1ed68b initial commit
+$ git log
+commit b1ed68bdb4806c798f1a66735019e4796aad7667
+Author: wrathematics <wrathematics@gmail.com>
+Date:   Mon Feb 1 14:44:43 2016 -0500
+
+    initial commit
+$ cat hw.r 
+print("hello world")
+$ rm hw.r 
+$ git stauts
+git: 'stauts' is not a git command. See 'git --help'.
+
+Did you mean this?
+	status
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	deleted:    hw.r
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git add hw.r 
+$ git commit -m "remove hw.r"
+[master 94fa0d6] remove hw.r
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 hw.r
+$ git status
+On branch master
+nothing to commit, working directory clean
+$ git log
+commit 94fa0d687cf7f71dfe4cc0d97334519f7e3027e2
+Author: wrathematics <wrathematics@gmail.com>
+Date:   Mon Feb 1 14:49:45 2016 -0500
+
+    remove hw.r
+
+commit b1ed68bdb4806c798f1a66735019e4796aad7667
+Author: wrathematics <wrathematics@gmail.com>
+Date:   Mon Feb 1 14:44:43 2016 -0500
+
+    initial commit
+$ ls
+$ ls -a
+.  ..  .git
+$ git reset --hard b1ed68bdb4806
+HEAD is now at b1ed68b initial commit
+$ ls
+hw.r
+$ Rscript hw.r 
+[1] "hello world"
+$ git add hw.r 
+$ git status
+On branch master
+nothing to commit, working directory clean
+$ vim hw.r 
+т╜  "hw.r" 1L, 21C hw.r                                           1 print("hello world")                    ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                            ~                                              N  тото  1:hw.r          тотото 100% тнб   1: 20  1:hw.ra   I  тото         тотото 100% тнб   1: 21  + hw.r l+2(")la3s4k5j6d7f8l9k30a1j2s3d4f5  N  тото         тотото 100% тнб   1: 34  ::wq"hw.r" 1L, 35C written    1 print("hello world")laskjdflkajsdf
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ~~~~~~~~~~~~~ 
+$ Rscript hw.r 
+Error: unexpected symbol in "print("hello world")laskjdflkajsdf"
+Execution halted
+$ git add .
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   hw.r
+
+$ git reset hw.r
+Unstaged changes after reset:
+M	hw.r
+$ git status 
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   hw.r
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git add hw.r 
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   hw.r
+
+$ git restet hw.r
+git: 'restet' is not a git command. See 'git --help'.
+
+Did you mean this?
+	reset
+$ git res
+Unstaged changes after reset:
+M	hw.r
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   hw.r
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ vim hw.r 
+т╜  "hw.r" 1L, 35C hw.r                                        ~    1 print("hello world")laskjdflkajsdf      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ~                                          ~                                          ~                                          ~                                          ~                                          ~                                          ~                                          ~                                          ~                                          ~                                          ~                                          ~                                            N  тото  1:hw.r          тотото 100% тнб   1: 34  1:hw.ra   I  тото         тотото 100% тнб   1: 35  + hw.r  +     2        ()1  N  тото         тотото 100% тнб   1: 20  a   I  тото         тотото 100% тнб   1: 21     1 print"hello world"   2                                       (")2:  ppp  1   1 print("hello world")                  ~                                          ()1: 2)("))21()0("))19\   N  тото         тотото 100% тнб   1: 18  i   I  тото         тотото 100% тнб   1: 18  9\ \n"))21 cprint("hello world\n"))2aprint("hello world\n"))3tprint("hello world\n"cat(print("hello world\n"))()5  N  тото         тотото 100% тнб   1:  4  ::wq"hw.r" 1L, 28C written
+$ Rscript hw.r 
+[1] "hello world\n"
+hello world
+$ git add hw.r 
+$ git commit -m "add cat to hw"$ git commit -m "add cat to hw"
+[master fe77288] add cat to hw
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git status
+On branch master
+nothing to commit, working directory clean
+$ git log
+commit fe77288cf42eb705ef956f0ae8d9f2e4d25dfe82
+Author: wrathematics <wrathematics@gmail.com>
+Date:   Mon Feb 1 14:53:32 2016 -0500
+
+    add cat to hw
+
+commit b1ed68bdb4806c798f1a66735019e4796aad7667
+Author: wrathematics <wrathematics@gmail.com>
+Date:   Mon Feb 1 14:44:43 2016 -0500
+
+    initial commit
+$ $ git commit -m "add cat to hw"add hw.r Rscriptvimstatusvim hw.r Rscriptgit addcommit -m "add cat to hw"logmkdir data
+$ cd ata
+bash: cd: ata: No such file or directory
+$ cd data
+$ vim dat.csv
+т╜  "dat.csv" [New File] dat.csv                                         1                                          ~                                             ~                                             ~                                             ~                                             ~                                             ~                                             ~                                             ~                                               N  тото  1:dat.csv        тотото 100% тнб   0:  0  i   I  тото       тотото 100% тнб   0:  1  + dat.csv 1+1:  2,3425,  43, 33 324,536  N  тото       тотото 100% тнб   1:  5  1:dat.csv+::wq"dat.csv" [New] 1L, 6C written
+$ cd  ..
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	data/
+
+nothing added to commit but untracked files present (use "git add" to track)
+$ git add data/
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   data/dat.csv
+
+$ git commit -m "add some data"
+[master 73a184e] add some data
+ 1 file changed, 1 insertion(+)
+ create mode 100644 data/dat.csv
+$ git remote add origin git@github.com:wrathegithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gitithub.com:wrathematics/bzan583example.githgithub.com:wrathematics/bzan583example.gittgithub.com:wrathematics/bzan583example.gittgithub.com:wrathematics/bzan583example.gitpgithub.com:wrathematics/bzan583example.gitsgithub.com:wrathematics/bzan583example.git:github.com:wrathematics/bzan583example.git/github.com:wrathematics/bzan583example.git/github.com:wrathematics/bzan583example.giwrathematics/bzan583example.git/wrathematics/bzan583example.giwrathematics/bzan583example.git"wrathematics/bzan583example.giwrathematics/bzan583example.git:wrathematics/bzan58github.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gitgithub.com:wrathematics/bzan583example.gitigithub.com:wrathematics/bzan583example.gittgithub.com:wrathematics/bzan583example.git@github.com:wrathematics/bzan583example.git
+
+$ cat .git/config 
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = git@github.com:wrathematics/bzan583example.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+$ git push origin master
+Counting objects: 10, done.
+Delta compression using up to 4 threads.
+Compressing objects:  25% (1/4)   Compressing objects:  50% (2/4)   Compressing objects:  75% (3/4)   Compressing objects: 100% (4/4)   Compressing objects: 100% (4/4), done.
+Writing objects:  10% (1/10)   Writing objects:  20% (2/10)   Writing objects:  30% (3/10)   Writing objects:  40% (4/10)   Writing objects:  50% (5/10)   Writing objects:  60% (6/10)   Writing objects:  70% (7/10)   Writing objects:  80% (8/10)   Writing objects:  90% (9/10)   Writing objects: 100% (10/10)   Writing objects: 100% (10/10), 738 bytes | 0 bytes/s, done.
+Total 10 (delta 0), reused 0 (delta 0)
+To git@github.com:wrathematics/bzan583example.git
+ * [new branch]      master -> master
+$ cd /tmp
+$ git clone https://github.com/wrathematics/bz an583example
+Cloning into 'bzan583example'...
+remote: Counting objects: 10, done.
+remote: Compressing objects:  25% (1/4)   remote: Compressing objects:  50% (2/4)   remote: Compressing objects:  75% (3/4)   remote: Compressing objects: 100% (4/4)   remote: Compressing objects: 100% (4/4), done.
+remote: Total 10 (delta 0), reused 10 (delta 0), pack-reused 0
+Unpacking objects:  10% (1/10)   Unpacking objects:  20% (2/10)   Unpacking objects:  30% (3/10)   Unpacking objects:  40% (4/10)   Unpacking objects:  50% (5/10)   Unpacking objects:  60% (6/10)   Unpacking objects:  70% (7/10)   Unpacking objects:  80% (8/10)   Unpacking objects:  90% (9/10)   Unpacking objects: 100% (10/10)   Unpacking objects: 100% (10/10), done.
+Checking connectivity... done.
+$ cd bzan583example/
+$ LS
+The program 'LS' is currently not installed. You can install it by typing:
+sudo apt-get install sl
+$ ls
+data  hw.r
+$ vim hw.r 
+т╜  "hw.r" 1L, 28C hw.r                                            1 cat(print("hello world\n"))              ~                                             ~                                             ~                                             ~                                             ~                                             ~                                             ~                                             ~                                               N  тото  1:hw.r           тотото 100% тнб   1:  1  1:hw.r::q$ ls
+data  hw.r
+$ cd ~/project
+$ ls
+data  hw.r
+$ git pull origin master
+remote: Counting objects: 3, done.
+remote: Compressing objects:  50% (1/2)   remote: Compressing objects: 100% (2/2)   remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects:  33% (1/3)   Unpacking objects:  66% (2/3)   Unpacking objects: 100% (3/3)   Unpacking objects: 100% (3/3), done.
+From github.com:wrathematics/bzan583example
+ * branch            master     -> FETCH_HEAD
+   73a184e..effbaa0  master     -> origin/master
+Updating 73a184e..effbaa0
+Fast-forward
+ hw.r | 1 +
+ 1 file changed, 1 insertion(+)
+$ ls'
+> ^C
+$ ls
+data  hw.r
+$ cat hqw.r 
+cat(print("hello world\n"))
+alskdjf
+$ vim 
+data/ .git/ hw.r  
+$ vim hw.r 
+т╜  "hw.r" 2L, 36C hw.r                                            1 cat(print("hello world\n"))                 2 alskdjf
+~                                             ~                                             ~                                             ~                                             ~                                             ~                                             ~                                               N  тото  1:hw.r           тотото  50% тнб   1:  4  1:hw.ra   I  тото          тотото  50% тнб   1:  5     1 catprint("hello world\n")   2 alskdjf                                  (p)102  N  тото          тотото 100% тнб   2:  4  d dd  + hw.r 
+   1 cat(print("hello world\n"))              ~                                             +1; w(p) 5q~@k    u more line; b...#1  4 seconds agohw.r   
+   1 cat(print("hello world\n"))   2 alskdjf                                    2:  4i   I  тото          тотото 100% тнб   2:  4  321+ hw.r !alskdjf+2  N  тото          тотото 100% тнб   2:  1  ::wq"hw.r" 2L, 37C written    1 cat(print("hello world\n"))
+    2 !alskdjf
+  
+  
+  
+  
+  
+  
+  ~~~~~~~~ 
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   hw.r
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git add .
+$ git commit -m "add a character"
+[master 47dd904] add a character
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git pull origin master 
+remote: Counting objects: 3, done.
+remote: Compressing objects:  50% (1/2)   remote: Compressing objects: 100% (2/2)   remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects:  33% (1/3)   Unpacking objects:  66% (2/3)   Unpacking objects: 100% (3/3)   Unpacking objects: 100% (3/3), done.
+From github.com:wrathematics/bzan583example
+ * branch            master     -> FETCH_HEAD
+   effbaa0..4409b3f  master     -> origin/master
+Auto-merging hw.r
+CONFLICT (content): Merge conflict in hw.r
+Automatic merge failed; fix conflicts and then commit the result.
+$ vim hw.r 
+т╜  "hw.r" 6L, 116C hw.r                                            1 cat(print("hello world\n"))
+   2 <<<<<<< HEAD                                3 !alskdjf
+   4 =======
+   5 @alskdjf
+   6 >>>>>>> 4409b3f640c20c488dd638540f4993df2~                                             ~                                             ~                                               N  тото  1:hw.r           тотото  33% тнб   2:  1  1:hw.r~@k      1 cat(print("hello world\n"))                 2 <<<<<<< HEAD> 161~@k      1 cat(print("hello world\n"))   2 <<<<<<< HEAD                             >332v1<<<<<< HEAD  V  то~@k2     2 <<<<<<< HEAD
+   3 > 503~@k3     3 !alskdjf
+   4 664~@k4     4 =======
+   5 835~@k5     5 @alskdjf
+   6 >1006~@k5  d 4 fewer lines+ hw.r 
+
+   2 >>>>>> 4409b3f640c20c488dd638540f4993df2f~                                             ~                                             ~                                             ~                                               N  то+2d dd     1 cat(print("hello world\n"))              ~                                             ~ 1::wq"hw.r" 1L, 28C written
+$ git add hw.r 
+$ git commit -m "fix"
+[master 49d1e1f] fix
+$ git push origin master 
+Counting objects: 6, done.
+Delta compression using up to 4 threads.
+Compressing objects:  25% (1/4)   Compressing objects:  50% (2/4)   Compressing objects:  75% (3/4)   Compressing objects: 100% (4/4)   Compressing objects: 100% (4/4), done.
+Writing objects:  16% (1/6)   Writing objects:  33% (2/6)   Writing objects:  50% (3/6)   Writing objects:  66% (4/6)   Writing objects:  83% (5/6)   Writing objects: 100% (6/6)   Writing objects: 100% (6/6), 586 bytes | 0 bytes/s, done.
+Total 6 (delta 0), reused 0 (delta 0)
+To git@github.com:wrathematics/bzan583example.git
+   4409b3f..49d1e1f  master -> master
+$ exit
+
+Script done on Mon 01 Feb 2016 03:54:32 PM EST
