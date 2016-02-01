@@ -11,7 +11,7 @@ Each of these exercises uses the file `iris.csv`, available on blackboard.  You 
 
 
 
-1. (10 pts) Show valid shell syntax using `cut` to remove the first column (the index column) and store the resulting file as `iris.csv`.
+1. (10 pts) Show valid shell syntax using `cut` to remove the first column (the index column) and store the resulting file as `iris.csv`.  (Hint: don't try to do it in place; remember the example from class).
 
 
 
