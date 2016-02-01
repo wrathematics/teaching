@@ -3,10 +3,9 @@ title: 'Homework 2: Shell Scripting'
 output: pdf_document
 ---
 
-*Due*: Friday, Feb 5, 2016 by 5:00pm.
+*Due*: Friday, Feb 5, 2016 by 11:59pm.
 
 You can use whatever shell/OS you like, but I will assume you have access to a modern GNU userland/flags, and your work will be graded accordingly.  As such, you are strongly encouraged to use your Ubuntu VM or Newton.
-
 
 Each of these exercises uses the file `iris.csv`, available on blackboard.  You can reproduce this file by entering `write.csv(file="iris.csv", iris)` in R.  You are only allowed to use the tools introduced in class (e.g., no perl, R, python, ...).
 
@@ -28,5 +27,5 @@ Each of these exercises uses the file `iris.csv`, available on blackboard.  You 
 
 
 
-5. (10 pts) Suppose you had done the steps in problems 2, 3, and 4 for the virginica species in a separate file called `virginica.tsv` (you don't need to actually do this), and that you wished to recombine the results into a single file `iris_new.tsv`.  Between the two, which command is most appropriate for this re-combining, `cat` or `join`?  Show how you would do it.  (Don't add a "header" line to the final file, just the data).
+5. (10 pts) Suppose you had done the steps in problems 2, 3, and 4 for the virginica species in a separate file called `virginica.tsv` (you don't need to actually do this), and that you wished to recombine the results into a single file `iris_new.tsv` containing the records for both species.  Between the two, which command is most appropriate for this re-combining, `cat` or `join`?  Show how you would do it.  (Don't add a "header" line to the final file, just the data).
 
