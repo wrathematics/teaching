@@ -1,0 +1,24 @@
+---
+title: 'Homework 3: git and GitHub'
+output: pdf_document
+---
+
+*Due*: Monday, Feb 8, 2016 by 5:00pm.
+
+Questions about syntax assume you are using the non-gui form for git that we saw in class.  So on Windows, you would use `git shell`, and on Mac/Linux you would use the terminal.
+
+
+1. (10 pts) Give valid syntax to create a new git repository.
+
+
+2. (10 pts) Suppose in our git repo, we have created a new, non-empty file `myscript.r`.  Give valid syntax to stage the file (and only this file) to be committed (but don't commit it).
+
+
+3. (10 pts) Give valid syntax to commit the file you staged in problem 2 above, with the commit message done "in line" (as in class), with the message "adding myscript.r".
+
+
+4. (10 pts) If we had a remote named `origin` (say on GitHub), what command would send our changes to the remote for the `master` branch?  (Hint: not `pull` but...)
+
+
+5. (10 pts) Briefly explain the difference between git and GitHub.
+
