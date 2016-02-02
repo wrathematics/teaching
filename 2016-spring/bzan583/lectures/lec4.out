@@ -304,7 +304,7 @@ $ git commit -m "add some data"
 [master 73a184e] add some data
  1 file changed, 1 insertion(+)
  create mode 100644 data/dat.csv
-$ git remote add origin git@github.com:wrathegithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gitithub.com:wrathematics/bzan583example.githgithub.com:wrathematics/bzan583example.gittgithub.com:wrathematics/bzan583example.gittgithub.com:wrathematics/bzan583example.gitpgithub.com:wrathematics/bzan583example.gitsgithub.com:wrathematics/bzan583example.git:github.com:wrathematics/bzan583example.git/github.com:wrathematics/bzan583example.git/github.com:wrathematics/bzan583example.giwrathematics/bzan583example.git/wrathematics/bzan583example.giwrathematics/bzan583example.git"wrathematics/bzan583example.giwrathematics/bzan583example.git:wrathematics/bzan58github.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gigithub.com:wrathematics/bzan583example.gitgithub.com:wrathematics/bzan583example.gitigithub.com:wrathematics/bzan583example.gittgithub.com:wrathematics/bzan583example.git@github.com:wrathematics/bzan583example.git
+$ git remote add origin git@github.com:wrathematics/bzan583example.git
 
 $ cat .git/config 
 [core]

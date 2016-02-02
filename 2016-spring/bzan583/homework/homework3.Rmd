@@ -3,7 +3,7 @@ title: 'Homework 3: git and GitHub'
 output: pdf_document
 ---
 
-*Due*: Monday, Feb 8, 2016 by 5:00pm.
+*Due*: Monday, Feb 8, 2016 by 11:59pm.
 
 Questions about syntax assume you are using the non-gui form for git that we saw in class.  So on Windows, you would use `git shell`, and on Mac/Linux you would use the terminal.
 
@@ -17,7 +17,7 @@ Questions about syntax assume you are using the non-gui form for git that we saw
 3. (10 pts) Give valid syntax to commit the file you staged in problem 2 above, with the commit message done "in line" (as in class), with the message "adding myscript.r".
 
 
-4. (10 pts) If we had a remote named `origin` (say on GitHub), what command would send our changes to the remote for the `master` branch?  (Hint: not `pull` but...)
+4. (10 pts) If we had a remote named `origin` (say on GitHub), what command would send our local changes to the remote for the `master` branch?  (Hint: not `pull` but...)
 
 
 5. (10 pts) Briefly explain the difference between git and GitHub.
