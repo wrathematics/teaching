@@ -23,7 +23,7 @@
 * Lecture 4: Introduction to git and GitHub
     * Lecture [ [slides](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/lectures/lecture4.pdf) | [handout](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/lectures/lecture4_handout.pdf) ]
     * [demo script](https://raw.githubusercontent.com/wrathematics/teaching/master/2016-spring/bzan583/lectures/lec4.out)
-    * homework
+    * [homework](https://github.com/wrathematics/teaching/raw/master/2016-spring/bzan583/homework/homework3.pdf)
 
 
 
